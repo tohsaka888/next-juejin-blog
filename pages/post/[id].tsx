@@ -18,7 +18,8 @@ const ArticleDetail: NextPage<{
 };
 
 export async function getServerSideProps() {
-  const source = "# h1 ## h2";
+  const source = `# h1 
+   ## h2`;
   const mdxSource = await serialize(source);
   return { props: { source: mdxSource } };
 }

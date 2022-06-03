@@ -1,10 +1,14 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import Header from '../components/Header'
-import styles from '../styles/Home.module.css'
+import { Flex, useColorMode } from "@chakra-ui/react";
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import Content from "../components/Content";
+import Header from "../components/Header";
+import Sider from "../components/Sider";
+import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
+  const { colorMode } = useColorMode();
   return (
     <div className={styles.container}>
       <Head>
@@ -15,6 +19,15 @@ const Home: NextPage = () => {
 
       <main>
         <Header />
+        <Flex
+          width={"100%"}
+          height={"100vh"}
+          bg={colorMode === "light" ? "#f9f9f9" : undefined}
+          padding={"16px 18vw"}
+        >
+          <Content />
+          <Sider />
+        </Flex>
       </main>
 
       <footer className={styles.footer}>
@@ -23,14 +36,14 @@ const Home: NextPage = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

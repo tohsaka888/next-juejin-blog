@@ -9,6 +9,7 @@ import { shadows } from "../config/theme";
 import styles from "../styles/Home.module.css";
 import { ListResponse, ArticleBriefInfo } from "../config/type";
 import { ListContext } from "context/Context";
+import DailySign from "../components/DailySign/index";
 
 const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
   const { colorMode } = useColorMode();
@@ -32,7 +33,9 @@ const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
           <ListContext.Provider value={list}>
             <Content />
           </ListContext.Provider>
-          <Sider />
+          <Sider>
+            <DailySign />
+          </Sider>
         </Flex>
       </main>
 

@@ -27,6 +27,7 @@ const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
           height={"100%"}
           bg={colorMode === "light" ? "#f9f9f9" : undefined}
           padding={"16px 18vw"}
+          mt={"60px"}
         >
           <ListContext.Provider value={list}>
             <Content />

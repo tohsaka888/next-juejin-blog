@@ -33,7 +33,8 @@ function Content() {
       <AnimatedMenu
         items={items}
         defaultSelectedKeys={["recommend"]}
-        itemStyle={{ fontSize: "14px" }}
+        itemStyle={{ fontSize: "15px", padding: "4px 20px" }}
+        style={{ height: "45px" }}
       />
       <Divider />
       <ArticleCard />

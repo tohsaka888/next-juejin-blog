@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, useColorMode } from "@chakra-ui/react";
+import { shadows } from "../../config/theme";
 
 function Content() {
   const { colorMode } = useColorMode();
@@ -8,6 +9,8 @@ function Content() {
       height={"100vh"}
       flex={3}
       bg={colorMode === "light" ? "#fff" : undefined}
+      shadow={shadows[colorMode]}
+      borderRadius={"8px"}
     ></Box>
   );
 }

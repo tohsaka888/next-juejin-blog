@@ -14,11 +14,11 @@ function Search() {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const { colorMode } = useColorMode();
   const searchAnime = useSpring({
-    width: isFocus ? "400px" : "260px",
+    width: isFocus ? "400px" : "290px",
     config: config.stiff,
   });
   const buttonAnime = useSpring({
-    width: isFocus ? "0px" : "130px",
+    width: isFocus ? "0px" : "100px",
     opacity: isFocus ? 0 : 1,
     display: isFocus ? "none" : "block",
     config: config.stiff,
@@ -43,7 +43,7 @@ function Search() {
         </InputGroup>
       </a.div>
       <a.div style={{ ...buttonAnime }}>
-        <Button width={"100%"} bg={"#1e80ff"} color={"#fff"}>
+        <Button width={"100%"} bg={"#1e80ff"} color={"#fff"} fontSize={"14px"}>
           创作者中心
         </Button>
       </a.div>

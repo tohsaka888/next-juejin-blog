@@ -11,13 +11,22 @@ import {
   BsMoonStarsFill,
   BsSunFill,
 } from "react-icons/bs";
+import { shadows } from "../../config/theme";
 
 const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
 function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Flex align={"center"} justify={"space-around"} padding={"0px 36px"}>
+    <Flex
+      align={"center"}
+      justify={"space-around"}
+      padding={"0px 36px"}
+      boxShadow={shadows[colorMode]}
+      position={"sticky"}
+      top={"0px"}
+      backdropFilter={"blur(10px)"}
+    >
       <Image src={logo} style={{ width: "107px", height: "22px" }} alt="logo" />
       <AnimatedMenu
         style={{ height: "60px" }}

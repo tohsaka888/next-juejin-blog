@@ -11,10 +11,10 @@ function DailySign() {
       shadow={shadows[colorMode]}
       padding={"24px 8px"}
     >
-      <Flex justify={"space-around"} align={"center"} mb={"8px"}>
+      <Flex justify={"space-around"} align={"center"} mb={"16px"}>
         <Flex>
-          <FcCalendar size={30} />
-          <Text fontSize={"20px"} ml={"8px"} fontWeight={"bold"}>
+          <FcCalendar size={28} />
+          <Text fontSize={"18px"} ml={"8px"} fontWeight={"700"}>
             晚上好!
           </Text>
         </Flex>

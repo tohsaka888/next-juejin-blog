@@ -4,27 +4,28 @@ import {
   InputRightAddon,
   Flex,
   Button,
+  Text,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsCaretDownFill } from "react-icons/bs";
 import { a, config, useSpring } from "react-spring";
-import { useColorMode } from "@chakra-ui/react";
+import { useColorMode, Box } from "@chakra-ui/react";
 
 function Search() {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const { colorMode } = useColorMode();
   const searchAnime = useSpring({
-    width: isFocus ? "400px" : "290px",
+    width: isFocus ? "450px" : "310px",
     config: config.stiff,
   });
   const buttonAnime = useSpring({
-    width: isFocus ? "0px" : "100px",
+    width: isFocus ? "0px" : "130px",
     opacity: isFocus ? 0 : 1,
     display: isFocus ? "none" : "block",
     config: config.stiff,
   });
   return (
-    <Flex width={"400px"} justify={"space-between"}>
+    <Flex width={"450px"} justify={"space-between"}>
       <a.div style={{ ...searchAnime }}>
         <InputGroup>
           <Input
@@ -43,8 +44,29 @@ function Search() {
         </InputGroup>
       </a.div>
       <a.div style={{ ...buttonAnime }}>
-        <Button width={"100%"} bg={"#1e80ff"} color={"#fff"} fontSize={"14px"}>
-          创作者中心
+        <Button
+          width={"100%"}
+          bg={"#1e80ff"}
+          color={"#fff"}
+          fontSize={"14px"}
+          paddingRight={"6px"}
+          paddingLeft={"6px"}
+          _hover={{ background: "#1e80ff", opacity: 0.8 }}
+        >
+          <Flex alignItems={"center"} width={"100%"}>
+            <Flex flex={1} justify={"center"}>
+              <Text>创作者中心</Text>
+            </Flex>
+
+            <Flex
+              align={"center"}
+              height={"40px"}
+              borderLeft={"0.5px solid hsla(0,0%,100%,.1)"}
+              paddingLeft={"6px"}
+            >
+              <BsCaretDownFill size={10} />
+            </Flex>
+          </Flex>
         </Button>
       </a.div>
     </Flex>

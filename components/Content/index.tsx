@@ -29,7 +29,6 @@ function Content() {
       bg={colorMode === "light" ? "#fff" : undefined}
       shadow={shadows[colorMode]}
       pos={"relative"}
-      // borderRadius={"8px"}
     >
       <AnimatedMenu
         items={items}

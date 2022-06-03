@@ -2,8 +2,9 @@ import React from "react";
 import { Box, useColorMode, Divider } from "@chakra-ui/react";
 import { shadows } from "../../config/theme";
 import ArticleCard from "components/ArticleCard";
-import AnimatedMenu from "react-spring-menu";
 import { MenuItemProps } from "config/type";
+import dynamic from "next/dynamic";
+const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
 const items: MenuItemProps[] = [
   {

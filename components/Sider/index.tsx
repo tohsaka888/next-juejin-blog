@@ -7,11 +7,10 @@ function Sider() {
   return (
     <Box
       bg={colorMode === "light" ? "#ffffff" : undefined}
-      height={"100vh"}
       flex={1}
       marginLeft={"16px"}
       shadow={shadows[colorMode]}
-      borderRadius={"8px"}
+      // borderRadius={"8px"}
     ></Box>
   );
 }

@@ -1,13 +1,16 @@
 import { Flex, useColorMode } from "@chakra-ui/react";
-import type { NextPage } from "next";
+import { baseUrl } from "config/baseUrl";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import Content from "../components/Content";
 import Sider from "../components/Sider";
 import { shadows } from "../config/theme";
 import styles from "../styles/Home.module.css";
+import { ListResponse, ArticleBriefInfo } from "../config/type";
+import { ListContext } from "context/Context";
 
-const Home: NextPage = () => {
+const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
   const { colorMode } = useColorMode();
 
   return (
@@ -25,10 +28,11 @@ const Home: NextPage = () => {
           bg={colorMode === "light" ? "#f9f9f9" : undefined}
           padding={"16px 18vw"}
         >
-          <Content />
+          <ListContext.Provider value={list}>
+            <Content />
+          </ListContext.Provider>
           <Sider />
         </Flex>
-        
       </main>
 
       <footer
@@ -48,6 +52,16 @@ const Home: NextPage = () => {
       </footer>
     </div>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await fetch(`${baseUrl}/api/list`);
+  const data: ListResponse = await res.json();
+  return {
+    props: {
+      list: data.success ? data.list : [],
+    },
+  };
 };
 
 export default Home;

@@ -14,6 +14,7 @@ export type ArticleBriefInfo = {
   views: number; // 浏览量
   like: number; // 点赞数
   comments: number; // 评论数
+  id: number; // 文章id
 };
 
 export type ArticleInfo = {

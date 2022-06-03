@@ -11,7 +11,7 @@ const config: ThemeConfig = {
 
 const shadows = {
   light: "0px 0px 8px rgba(0, 0, 0, 0.1)",
-  dark: "0px 0px 10px #1890ff",
+  dark: "0px 0px 10px rgba(45, 70, 233, 0.3)",
 };
 
 // 3. extend the theme

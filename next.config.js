@@ -14,6 +14,9 @@ const withMDX = require('@next/mdx')(
 
 const nextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['p3-juejin.byteimg.com'],
+  },
 }
 
 module.exports = withMDX({

@@ -21,3 +21,8 @@ export type ArticleInfo = {
   avatarUrl: string; // 作者头像
   content: string; // 文章内容
 } & ArticleBriefInfo;
+
+export type ListResponse = {
+  success: boolean;
+  list: ArticleBriefInfo[];
+};

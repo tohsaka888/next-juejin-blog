@@ -1,18 +1,13 @@
 import React from "react";
-import { Box, useColorMode } from "@chakra-ui/react";
-import { shadows } from "../../config/theme";
+import { Box } from "@chakra-ui/react";
 
-function Sider() {
-  const { colorMode } = useColorMode();
+type Props = {
+  children: React.ReactNode;
+};
+
+function Sider({ children }: Props) {
   return (
-    <Box
-      bg={colorMode === "light" ? "#ffffff" : undefined}
-      flex={1}
-      marginLeft={"16px"}
-      shadow={shadows[colorMode]}
-      pos={"relative"}
-      top={"0px"}
-    >
+    <Box flex={1} marginLeft={"16px"} pos={"relative"} top={"0px"}>
       {/* fixed object */}
       <Box
         pos={"fixed"}
@@ -22,6 +17,7 @@ function Sider() {
         border={"1px solid"}
         opacity={"0"}
       ></Box>
+      {children}
     </Box>
   );
 }

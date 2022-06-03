@@ -26,6 +26,7 @@ function Header() {
       position={"sticky"}
       top={"0px"}
       backdropFilter={"blur(10px)"}
+      zIndex={1000}
     >
       <Image src={logo} style={{ width: "107px", height: "22px" }} alt="logo" />
       <AnimatedMenu

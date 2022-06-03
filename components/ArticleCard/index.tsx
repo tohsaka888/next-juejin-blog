@@ -6,11 +6,13 @@ import { BsChatDots, BsDot, BsEye, BsHandThumbsUp } from "react-icons/bs";
 import moment from "moment";
 import "moment/locale/zh-cn";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 moment.locale("zh-cn");
 
 function ArticleCard() {
   const { colorMode } = useColorMode();
+  const route = useRouter();
   const list = useContext(ListContext)!;
   const trail = useTrail(list.length, {
     from: { opacity: 0, transform: "translate3d(0,20px,0)" },
@@ -72,6 +74,8 @@ function ArticleCard() {
                       whiteSpace={"nowrap"}
                       lineHeight={"24px"}
                       mb={"6px"}
+                      cursor={"pointer"}
+                      onClick={() => route.push(`/post/${item.id}`)}
                     >
                       {item.title}
                     </Text>

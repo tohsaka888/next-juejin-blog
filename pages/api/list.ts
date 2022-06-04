@@ -13,7 +13,7 @@ export default function handler(
       title: `文章标题${i}--React`,
       tags: ["React", "Next.js"],
       coverImage:
-        "https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2d9b07ecbf6747e38c36318fff6bc843~tplv-k3u1fbpfcp-no-mark:720:720:720:480.awebp?",
+        "https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/92273c48d6e04babadae9969efa6d4b9~tplv-k3u1fbpfcp-zoom-crop-mark:1304:1304:1304:734.awebp??",
       views: i * 100,
       like: i * 100,
       comments: i * 100,

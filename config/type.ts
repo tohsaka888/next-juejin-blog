@@ -26,3 +26,8 @@ export type ListResponse = {
   success: boolean;
   list: ArticleBriefInfo[];
 };
+
+export type InfoResponse = {
+  success: boolean;
+  info: ArticleInfo;
+};

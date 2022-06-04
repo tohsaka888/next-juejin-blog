@@ -18,11 +18,13 @@ import {
   BsSunFill,
 } from "react-icons/bs";
 import { shadows } from "../../config/theme";
+import { useRouter } from "next/router";
 
 const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
 function Header() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const router = useRouter();
   return (
     <Flex
       align={"center"}
@@ -36,7 +38,14 @@ function Header() {
       height={"60px"}
       width={"100%"}
     >
-      <Image src={logo} style={{ width: "107px", height: "22px" }} alt="logo" />
+      <Image
+        src={logo}
+        style={{ width: "107px", height: "22px" }}
+        alt="logo"
+        onClick={() => {
+          router.push("/");
+        }}
+      />
       <AnimatedMenu
         style={{ height: "60px" }}
         items={items}

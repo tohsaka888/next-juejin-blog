@@ -16,3 +16,24 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.article-detail:target {
+  padding-top: 70px;
+  margin-top: -70px;
+}
+
+.toc > ol {
+  margin-left: 8px;
+  margin-top: 0px;
+}
+
+.toc li {
+  margin: 8px 0px;
+  margin-left: 8px;
+  font-size: 14px;
+  padding: 4px 0px;
+}
+
+.toc a:hover {
+  color: #1890ff;
+}

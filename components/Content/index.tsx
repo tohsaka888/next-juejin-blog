@@ -28,7 +28,6 @@ function Content() {
       flex={3}
       bg={colorMode === "light" ? "#fff" : undefined}
       shadow={shadows[colorMode]}
-      pos={"relative"}
     >
       <AnimatedMenu
         items={items}

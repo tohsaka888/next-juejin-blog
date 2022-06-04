@@ -4,7 +4,7 @@ specifiers:
   '@chakra-ui/react': ^2.1.2
   '@emotion/react': ^11
   '@emotion/styled': ^11
-  '@mdx-js/react': ^2.1.1
+  '@jsdevtools/rehype-toc': ^3.0.2
   '@types/node': 17.0.39
   '@types/react': 18.0.11
   '@types/react-dom': 18.0.5
@@ -21,6 +21,7 @@ specifiers:
   react-spring-menu: ^0.0.1
   rehype-autolink-headings: ^6.1.1
   rehype-prism-plus: ^1.4.0
+  rehype-slug: ^5.0.1
   remark-codesandbox: ^0.10.1
   remark-directive: ^2.0.1
   remark-embed-images: ^3.1.0
@@ -33,7 +34,6 @@ dependencies:
   '@chakra-ui/react': 2.1.2_jdy6cmp7tl64ghqnphy6nlrs4a
   '@emotion/react': 11.9.0_xzblsqi5foayvoljr2geupzxea
   '@emotion/styled': 11.8.1_go2vspwukcwrlktcqggu7jzx7y
-  '@mdx-js/react': 2.1.1_react@18.1.0
   framer-motion: 6.3.6_ef5jwxihqo6n7gxfmzogljlgcm
   moment: 2.29.3
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -45,6 +45,7 @@ dependencies:
   react-spring-menu: 0.0.1_wfhvqiprmys65wyvbjfgd3t6zi
 
 devDependencies:
+  '@jsdevtools/rehype-toc': 3.0.2
   '@types/node': 17.0.39
   '@types/react': 18.0.11
   '@types/react-dom': 18.0.5
@@ -52,6 +53,7 @@ devDependencies:
   eslint-config-next: 12.1.6_qwqcuvhue6diaz4jqbkm5dp3pa
   rehype-autolink-headings: 6.1.1
   rehype-prism-plus: 1.4.0
+  rehype-slug: 5.0.1
   remark-codesandbox: 0.10.1
   remark-directive: 2.0.1
   remark-embed-images: 3.1.0
@@ -1365,6 +1367,11 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.0.7
       '@jridgewell/sourcemap-codec': 1.4.13
+
+  /@jsdevtools/rehype-toc/3.0.2:
+    resolution: {integrity: sha512-n5JEf16Wr4mdkRMZ8wMP/wN9/sHmTjRPbouXjJH371mZ2LEGDl72t8tEsMRNFerQN/QJtivOxqK1frdGa4QK5Q==}
+    engines: {node: '>=10'}
+    dev: true
 
   /@mdx-js/mdx/2.1.1:
     resolution: {integrity: sha512-SXC18cChut3F2zkVXwsb2no0fzTQ1z6swjK13XwFbF5QU/SFQM0orAItPypSdL3GvqYyzVJtz8UofzJhPEQtMw==}
@@ -3269,6 +3276,10 @@ packages:
     engines: {node: '>=0.8'}
     dependencies:
       remote-origin-url: 0.4.0
+    dev: true
+
+  /github-slugger/1.4.0:
+    resolution: {integrity: sha512-w0dzqw/nt51xMVmlaV1+JRzN+oCa1KfcgGEWhxUG16wbdA+Xnt/yoFO8Z8x/V82ZcZ0wy6ln9QDup5avbhiDhQ==}
     dev: true
 
   /glob-parent/5.1.2:
@@ -5543,6 +5554,18 @@ packages:
       refractor: 4.7.0
       rehype-parse: 8.0.4
       unist-util-filter: 4.0.0
+      unist-util-visit: 4.1.0
+    dev: true
+
+  /rehype-slug/5.0.1:
+    resolution: {integrity: sha512-X5v3wV/meuOX9NFcGhJvUpEjIvQl2gDvjg3z40RVprYFt7q3th4qMmYLULiu3gXvbNX1ppx+oaa6JyY1W67pTA==}
+    dependencies:
+      '@types/hast': 2.3.4
+      github-slugger: 1.4.0
+      hast-util-has-property: 2.0.0
+      hast-util-heading-rank: 2.1.0
+      hast-util-to-string: 2.0.0
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: true
 

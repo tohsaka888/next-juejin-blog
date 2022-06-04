@@ -4,12 +4,7 @@ specifiers:
   '@chakra-ui/react': ^2.1.2
   '@emotion/react': ^11
   '@emotion/styled': ^11
-  '@mdx-js/loader': ^2.1.1
-  '@mdx-js/mdx': ^2.1.1
   '@mdx-js/react': ^2.1.1
-  '@next/mdx': ^12.1.6
-  '@types/mdx': ^2.0.2
-  '@types/mdx-js__react': ^1.5.5
   '@types/node': 17.0.39
   '@types/react': 18.0.11
   '@types/react-dom': 18.0.5
@@ -37,12 +32,7 @@ dependencies:
   '@chakra-ui/react': 2.1.2_jdy6cmp7tl64ghqnphy6nlrs4a
   '@emotion/react': 11.9.0_xzblsqi5foayvoljr2geupzxea
   '@emotion/styled': 11.8.1_go2vspwukcwrlktcqggu7jzx7y
-  '@mdx-js/loader': 2.1.1
-  '@mdx-js/mdx': 2.1.1
   '@mdx-js/react': 2.1.1_react@18.1.0
-  '@next/mdx': 12.1.6_svepmivmajrgriivp7ha5q4gca
-  '@types/mdx': 2.0.2
-  '@types/mdx-js__react': 1.5.5
   framer-motion: 6.3.6_ef5jwxihqo6n7gxfmzogljlgcm
   moment: 2.29.3
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -1196,17 +1186,6 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: false
 
-  /@mdx-js/loader/2.1.1:
-    resolution: {integrity: sha512-24danl02C30QoXVQTqvoEL84jN1e2BBSYMk9A/DGYBtHWXg5kdVp+A6P4hrFOwHvkEIjRbY0N49jPOSbpOgrOQ==}
-    peerDependencies:
-      webpack: '>=4'
-    dependencies:
-      '@mdx-js/mdx': 2.1.1
-      source-map: 0.7.3
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /@mdx-js/mdx/2.1.1:
     resolution: {integrity: sha512-SXC18cChut3F2zkVXwsb2no0fzTQ1z6swjK13XwFbF5QU/SFQM0orAItPypSdL3GvqYyzVJtz8UofzJhPEQtMw==}
     dependencies:
@@ -1250,16 +1229,6 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
-
-  /@next/mdx/12.1.6_svepmivmajrgriivp7ha5q4gca:
-    resolution: {integrity: sha512-pyE8CZQ3xHs5rIXp6Js4zN3+u77Y50YFw5kHMtbW1Gfw6zwl9UcJci4K27vURDAItoVFdcwZZ4kvuI2YjO1Cwg==}
-    peerDependencies:
-      '@mdx-js/loader': '>=0.15.0'
-      '@mdx-js/react': '*'
-    dependencies:
-      '@mdx-js/loader': 2.1.1
-      '@mdx-js/react': 2.1.1_react@18.1.0
-    dev: false
 
   /@next/swc-android-arm-eabi/12.1.6:
     resolution: {integrity: sha512-BxBr3QAAAXWgk/K7EedvzxJr2dE014mghBSA9iOEAv0bMgF+MRq4PoASjuHi15M2zfowpcRG8XQhMFtxftCleQ==}
@@ -1570,12 +1539,6 @@ packages:
 
   /@types/mdurl/1.0.2:
     resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
-    dev: false
-
-  /@types/mdx-js__react/1.5.5:
-    resolution: {integrity: sha512-k8pnaP6JXVlQh18HgL5X6sYFNC/qZnzO7R2+HsmwrwUd+JnnsU0d9lyyT0RQrHg1anxDU36S98TI/fsGtmYqqg==}
-    dependencies:
-      '@types/react': 18.0.11
     dev: false
 
   /@types/mdx/2.0.2:
@@ -6032,11 +5995,6 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
-
-  /source-map/0.7.3:
-    resolution: {integrity: sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==}
-    engines: {node: '>= 8'}
-    dev: false
 
   /space-separated-tokens/1.1.5:
     resolution: {integrity: sha512-q/JSVd1Lptzhf5bkYm4ob4iWPjx0KiRe3sRFBNrVqbJkFaBm5vbbowy1mymoPNLRa52+oadOhJ+K49wsSeSjTA==}

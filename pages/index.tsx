@@ -10,6 +10,7 @@ import styles from "../styles/Home.module.css";
 import { ListResponse, ArticleBriefInfo } from "../config/type";
 import { ListContext } from "context/Context";
 import DailySign from "../components/DailySign/index";
+import Download from "components/Download";
 
 const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
   const { colorMode } = useColorMode();
@@ -35,6 +36,7 @@ const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
           </ListContext.Provider>
           <Sider>
             <DailySign />
+            <Download />
           </Sider>
         </Flex>
       </main>

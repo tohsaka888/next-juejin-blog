@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-// const codesandbox = require('remark-codesandbox');
-// const codescreenshot = require('remark-code-screenshot')
-// const remarkCapitalize = require('remark-capitalize')
-// const admonitions = require('remark-admonitions')
 import MDXProvider from '@next/mdx'
 import remarkPrism from 'remark-prism'
 

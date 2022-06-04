@@ -40,7 +40,7 @@ function Header() {
     >
       <Image
         src={logo}
-        style={{ width: "107px", height: "22px" }}
+        style={{ width: "107px", height: "22px", cursor: "pointer" }}
         alt="logo"
         onClick={() => {
           router.push("/");

@@ -4,11 +4,7 @@
 // const remarkCapitalize = require('remark-capitalize')
 // const admonitions = require('remark-admonitions')
 import MDXProvider from '@next/mdx'
-import codesandbox from 'remark-codesandbox'
-import codescreenshot from 'remark-code-screenshot'
-import remarkCapitalize from 'remark-capitalize'
-import highlight from 'rehype-highlight'
-import rehypePrism from 'rehype-prism-plus'
+import remarkPrism from 'remark-prism'
 
 
 const withMDX = MDXProvider(

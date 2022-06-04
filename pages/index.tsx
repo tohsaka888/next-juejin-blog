@@ -1,8 +1,7 @@
-import { Flex, useColorMode } from "@chakra-ui/react";
+import { Flex, useColorMode, Image } from "@chakra-ui/react";
 import { baseUrl } from "config/baseUrl";
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import Content from "../components/Content";
 import Sider from "../components/Sider";
 import { shadows } from "../config/theme";

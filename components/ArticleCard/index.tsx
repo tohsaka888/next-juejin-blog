@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 moment.locale("zh-cn");
 
 function ArticleCard() {
-  const { colorMode } = useColorMode();
   const route = useRouter();
   const list = useContext(ListContext)!;
   const trail = useTrail(list.length, {
@@ -28,7 +27,7 @@ function ArticleCard() {
             <Box width={"100%"} padding={"8px 0px"}>
               <Flex align={"center"}>
                 <Text
-                  color={"#4e5969"}
+                  // color={"#4e5969"}
                   cursor={"pointer"}
                   fontSize={"13px"}
                   _hover={{ color: "#1d7dfa" }}
@@ -37,7 +36,7 @@ function ArticleCard() {
                 </Text>
                 <Text
                   fontSize={"13px"}
-                  color={"#4e5969"}
+                  // color={"#4e5969"}
                   pb={"2px"}
                   margin={"0px 8px"}
                 >
@@ -46,7 +45,7 @@ function ArticleCard() {
                 <Text fontSize={"13px"}>{moment(item.date).fromNow()}</Text>
                 <Text
                   fontSize={"13px"}
-                  color={"#4e5969"}
+                  // color={"#4e5969"}
                   pb={"2px"}
                   margin={"0px 8px"}
                 >
@@ -54,7 +53,7 @@ function ArticleCard() {
                 </Text>
                 {item.tags.map((tag, index) => (
                   <React.Fragment key={tag}>
-                    <Text key={tag} fontSize={"13px"} color={"#4e5969"}>
+                    <Text key={tag} fontSize={"13px"}>
                       {tag}
                     </Text>
                     {index !== item.tags.length - 1 && (

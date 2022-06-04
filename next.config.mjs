@@ -3,7 +3,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['p3-juejin.byteimg.com'],
+    domains: ['p3-juejin.byteimg.com', 'p6-juejin.byteimg.com'],
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 }

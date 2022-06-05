@@ -20,6 +20,7 @@ import {
 } from "react-icons/bs";
 import { shadows } from "../../config/theme";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
@@ -74,12 +75,17 @@ function Header({ onOpen }: { onOpen: () => void }) {
           aria-label={""}
           mr={"8px"}
         />
-        <IconButton
-          bg={"transparent"}
-          icon={<BsGithub size="24" />}
-          aria-label={""}
-          mr={"8px"}
-        />
+        <Link
+          href={"https://github.com/tohsaka888/next-juejin-blog"}
+          target="_blank"
+        >
+          <IconButton
+            bg={"transparent"}
+            icon={<BsGithub size="24" />}
+            aria-label={""}
+            mr={"8px"}
+          />
+        </Link>
       </Flex>
       <Flex width="100px" justify={"flex-end"}>
         {/* <Avatar width={"38px"} height={"38px"} /> */}

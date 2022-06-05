@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+import removeImport from 'next-remove-imports';
+
 const nextConfig = {
   reactStrictMode: true,
   images: {
@@ -8,4 +10,6 @@ const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
 }
 
-export default nextConfig
+
+
+export default removeImport()(nextConfig);

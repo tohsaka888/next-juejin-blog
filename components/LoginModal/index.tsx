@@ -13,6 +13,7 @@ import {
   Flex,
   InputGroup,
   InputRightAddon,
+  useToast,
 } from "@chakra-ui/react";
 import { baseUrl } from "config/baseUrl";
 import { LoginResponse, ModalProps } from "config/type";
@@ -33,11 +34,13 @@ type ACTION = { type: "pending" } | { type: "invite" } | { type: "password" };
 function LoginPanel({
   dispatch,
   setPanel,
+  onClose
 }: {
   dispatch: React.Dispatch<ACTION>;
   setPanel: React.Dispatch<
     React.SetStateAction<"login" | "register" | "forget">
   >;
+  onClose: () => void;
 }) {
   const [username, setUsername] = useState<string>("")
   const [password, setPassword] = useState<string>("")
@@ -52,7 +55,9 @@ function LoginPanel({
     })
     const data: LoginResponse = await res.json()
     localStorage.setItem("token", data.token)
-  }, [username, password])
+    onClose()
+
+  }, [username, password, onClose])
 
   return (
     <>
@@ -97,16 +102,20 @@ function LoginPanel({
 const RegisterPanel = ({
   dispatch,
   setPanel,
+  onClose
 }: {
   dispatch: React.Dispatch<ACTION>;
   setPanel: React.Dispatch<
     React.SetStateAction<"login" | "register" | "forget">
   >;
+  onClose: () => void;
 }) => {
   const [isSend, setIsSend] = useState<boolean>(false);
   const [second, setSecond] = useState<number>(60);
   const [email, setEmail] = useState<string>("");
+  const [code, setCode] = useState<string>("");
   const timerRef = useRef<number>(0);
+  const toast = useToast()
   useEffect(() => {
     if (isSend) {
       timerRef.current = window.setInterval(() => {
@@ -132,6 +141,35 @@ const RegisterPanel = ({
     })
     const data: LoginResponse = await res.json()
   }, [email])
+
+  const login = useCallback(async () => {
+    const res = await fetch(`${baseUrl}/api/login`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        code,
+        t: 1
+      }),
+    })
+    const data: LoginResponse = await res.json()
+    if (data.success) {
+      localStorage.setItem("token", data.token)
+      toast({
+        title: "登录成功",
+        status: "success",
+        position: "top"
+      })
+    } else {
+      toast({
+        title: data.msg,
+        status: "error",
+        position: "top"
+      })
+    }
+
+    onClose()
+
+  }, [email, code, onClose, toast])
   return (
     <>
       <Input
@@ -146,9 +184,12 @@ const RegisterPanel = ({
       <InputGroup>
         <Input
           type={"password"}
-          placeholder={"请输入密码"}
+          placeholder={"请输入验证码"}
           onFocus={() => dispatch({ type: "password" })}
           onBlur={() => dispatch({ type: "pending" })}
+          onChange={(event: any) => {
+            setCode(event.target.value);
+          }}
         />
         <InputRightAddon padding={"0px"}>
           <Button w={"100%"} disabled={isSend} onClick={() => {
@@ -161,7 +202,7 @@ const RegisterPanel = ({
           </Button>
         </InputRightAddon>
       </InputGroup>
-      <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"}>
+      <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"} onClick={login}>
         登录
       </Button>
       <Text
@@ -222,9 +263,9 @@ function LoginModal({ isOpen, onClose }: ModalProps) {
         <ModalCloseButton />
         <ModalBody zIndex={100}>
           {panel === "login" ? (
-            <LoginPanel dispatch={dispatch} setPanel={setPannel} />
+            <LoginPanel dispatch={dispatch} setPanel={setPannel} onClose={onClose} />
           ) : (
-            <RegisterPanel dispatch={dispatch} setPanel={setPannel} />
+            <RegisterPanel dispatch={dispatch} setPanel={setPannel} onClose={onClose} />
           )}
         </ModalBody>
         <ModalFooter>

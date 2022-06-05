@@ -257,7 +257,7 @@ function LoginModal({ isOpen, onClose }: ModalProps) {
         </Box>
         <ModalHeader>
           {panel === "login" && "账密登录"}
-          {panel === "register" && "手机登录"}
+          {panel === "register" && "邮箱登录"}
           {panel === "forget" && "找回密码"}
         </ModalHeader>
         <ModalCloseButton />

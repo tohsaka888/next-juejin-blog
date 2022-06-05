@@ -105,6 +105,7 @@ const RegisterPanel = ({
 }) => {
   const [isSend, setIsSend] = useState<boolean>(false);
   const [second, setSecond] = useState<number>(60);
+  const [email, setEmail] = useState<string>("");
   const timerRef = useRef<number>(0);
   useEffect(() => {
     if (isSend) {
@@ -121,6 +122,16 @@ const RegisterPanel = ({
       window.clearInterval(timerRef.current);
     };
   }, [isSend, second]);
+
+  const sendEmail = useCallback(async () => {
+    const res = await fetch(`${baseUrl}/api/sendmail`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email
+      }),
+    })
+    const data: LoginResponse = await res.json()
+  }, [email])
   return (
     <>
       <Input
@@ -128,6 +139,9 @@ const RegisterPanel = ({
         mb={"16px"}
         onFocus={() => dispatch({ type: "invite" })}
         onBlur={() => dispatch({ type: "pending" })}
+        onChange={(event: any) => {
+          setEmail(event.target.value);
+        }}
       />
       <InputGroup>
         <Input
@@ -137,7 +151,10 @@ const RegisterPanel = ({
           onBlur={() => dispatch({ type: "pending" })}
         />
         <InputRightAddon padding={"0px"}>
-          <Button w={"100%"} disabled={isSend} onClick={() => setIsSend(true)}>
+          <Button w={"100%"} disabled={isSend} onClick={() => {
+            sendEmail()
+            setIsSend(true)
+          }}>
             <Text fontSize={"12px"} color={"#1890ff"} cursor={"pointer"}>
               {isSend ? `${second}s秒后重新获取` : "获取验证码"}
             </Text>

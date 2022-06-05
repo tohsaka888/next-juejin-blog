@@ -37,7 +37,7 @@ const ArticleDetail: NextPage<{
 }> = ({ source, info }) => {
   const { colorMode } = useColorMode();
   return (
-    <Box bg={"#f9f9f9"} pt={"80px"}>
+    <Box bg={colorMode === "light" ? "#f9f9f9" : undefined} pt={"80px"}>
       <Box
         width="55vw"
         ml={"13vw"}

@@ -3,12 +3,15 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from 'jsonwebtoken'
 import { LoginResponse, MailResponse } from "config/type";
 import mailconfig from "lib/mailconfig";
+import connectDB from "lib/connectDb";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<MailResponse>
 ) {
   const body = JSON.parse(req.body || {})
+  const db = await connectDB();
+  const collection = db.collection("AuthCode")
 
   const code = String(Math.floor(Math.random() * 1000000)).padEnd(6, '0') //生成6位随机验证码
   const mailAddress = body.email
@@ -23,6 +26,7 @@ export default async function handler(
           <p>如果不是您本人操作，请无视此邮件</p>
       `
   };
+  await collection.insertOne({ email: mailAddress, code: code })
   await mailconfig.sendMail(mail)
   res.status(200).send({ success: true })
 }

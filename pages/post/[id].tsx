@@ -29,6 +29,7 @@ import toc from "@jsdevtools/rehype-toc";
 import Toc from "markdown/Toc";
 import { shadows } from "config/theme";
 import moment from "moment";
+import { PrismTheme } from "../../styles/PrismTheme";
 
 const ArticleDetail: NextPage<{
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -75,22 +76,25 @@ const ArticleDetail: NextPage<{
           alt=""
           mb={"24px"}
         />
-        <MDXRemote
-          {...source}
-          components={{
-            h1: H1,
-            h2: H2,
-            h3: H3,
-            h4: H4,
-            h5: H5,
-            h6: H6,
-            p: Paragraph,
-            ol: OrderedList,
-            li: OrderListItem,
-            nav: Toc,
-          }}
-        />
+        <PrismTheme>
+          <MDXRemote
+            {...source}
+            components={{
+              h1: H1,
+              h2: H2,
+              h3: H3,
+              h4: H4,
+              h5: H5,
+              h6: H6,
+              p: Paragraph,
+              ol: OrderedList,
+              li: OrderListItem,
+              nav: Toc,
+            }}
+          />
+        </PrismTheme>
       </Box>
+      <PrismTheme />
     </Box>
   );
 };

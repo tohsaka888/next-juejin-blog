@@ -35,6 +35,8 @@ export type InfoResponse = {
 export type LoginResponse = {
   success: boolean;
   token: string;
+  msg?: string;
+  needRegister?: boolean;
 };
 
 export type ModalProps = {

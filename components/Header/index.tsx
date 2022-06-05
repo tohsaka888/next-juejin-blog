@@ -83,7 +83,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
       </Flex>
       <Flex width="100px" justify={"flex-end"}>
         {/* <Avatar width={"38px"} height={"38px"} /> */}
-        <Button width={"100px"} onClick={onOpen}>
+        <Button width={"100px"} onClick={onOpen} color="#1890ff">
           登录/注册
         </Button>
       </Flex>

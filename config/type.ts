@@ -46,3 +46,7 @@ export type ModalProps = {
   getButtonProps: (props?: any) => any;
   getDisclosureProps: (props?: any) => any;
 };
+
+export type MailResponse = {
+  success: boolean;
+};

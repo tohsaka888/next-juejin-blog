@@ -5,6 +5,7 @@ import {
   Flex,
   IconButton,
   useColorMode,
+  useDisclosure,
 } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
 import { items } from "./menuConfig";
@@ -22,7 +23,7 @@ import { useRouter } from "next/router";
 
 const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
-function Header() {
+function Header({ onOpen }: { onOpen: () => void }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
   return (
@@ -82,7 +83,9 @@ function Header() {
       </Flex>
       <Flex width="100px" justify={"flex-end"}>
         {/* <Avatar width={"38px"} height={"38px"} /> */}
-        <Button width={"100px"}>登录</Button>
+        <Button width={"100px"} onClick={onOpen}>
+          登录/注册
+        </Button>
       </Flex>
     </Flex>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Avatar,
   Button,
@@ -21,11 +21,13 @@ import {
 import { shadows } from "../../config/theme";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { LoginStatusContext } from "context/Context";
 
 const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
 function Header({ onOpen }: { onOpen: () => void }) {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { loginStatus, setLoginStatus } = useContext(LoginStatusContext)!
   const router = useRouter();
   return (
     <Flex
@@ -87,11 +89,25 @@ function Header({ onOpen }: { onOpen: () => void }) {
           />
         </Link>
       </Flex>
-      <Flex width="100px" justify={"flex-end"}>
-        {/* <Avatar width={"38px"} height={"38px"} /> */}
-        <Button width={"100px"} onClick={onOpen} color="#1890ff">
-          登录/注册
-        </Button>
+      <Flex width={loginStatus.status ? "150px" : '100px'} justify={"flex-end"}>
+        {loginStatus.status ? (
+          <Flex justify={"space-between"} width={"200px"}>
+            <Avatar width={"38px"} height={"38px"} />
+            <Button width={"100px"} onClick={() => {
+              localStorage.removeItem("token");
+              setLoginStatus({
+                status: false,
+                username: "",
+              });
+            }} color="#1890ff">
+              退出登录
+            </Button>
+          </Flex>
+        ) : (
+          <Button width={"100px"} onClick={onOpen} color="#1890ff">
+            登录/注册
+          </Button>
+        )}
       </Flex>
     </Flex>
   );

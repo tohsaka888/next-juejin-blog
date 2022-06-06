@@ -56,7 +56,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
         defaultSelectedKeys={["homepage"]}
         color={colorMode === "light" ? "#000" : "#fff"}
       />
-      <Search />
+      <Search onOpen={onOpen} />
       <Flex>
         <IconButton
           bg={"transparent"}

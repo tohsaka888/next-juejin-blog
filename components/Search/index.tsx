@@ -6,12 +6,14 @@ import {
   Button,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsSearch, BsCaretDownFill } from "react-icons/bs";
 import { a, config, useSpring } from "react-spring";
 import { useColorMode, Box } from "@chakra-ui/react";
+import { LoginStatusContext } from "context/Context";
+import { useRouter } from "next/router";
 
-function Search() {
+function Search({ onOpen }: { onOpen: () => void }) {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const { colorMode } = useColorMode();
   const searchAnime = useSpring({
@@ -24,6 +26,9 @@ function Search() {
     display: isFocus ? "none" : "block",
     config: config.stiff,
   });
+  const { loginStatus } = useContext(LoginStatusContext)!;
+  const router = useRouter()
+
   return (
     <Flex width={"450px"} justify={"space-between"}>
       <a.div style={{ ...searchAnime }}>
@@ -52,6 +57,15 @@ function Search() {
           paddingRight={"6px"}
           paddingLeft={"6px"}
           _hover={{ background: "#1e80ff", opacity: 0.8 }}
+          onClick={() => {
+            if (loginStatus.status) {
+              const token = localStorage.getItem("token");
+              console.log(token);
+              router.push(`/drafts/${token}`)
+            } else {
+              onOpen()
+            }
+          }}
         >
           <Flex alignItems={"center"} width={"100%"}>
             <Flex flex={1} justify={"center"}>

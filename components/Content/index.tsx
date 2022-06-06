@@ -34,6 +34,7 @@ function Content() {
         defaultSelectedKeys={["recommend"]}
         itemStyle={{ fontSize: "15px", padding: "4px 20px" }}
         style={{ height: "45px" }}
+        color={colorMode === "light" ? "#000" : "#fff"}
       />
       <Divider />
       <ArticleCard />

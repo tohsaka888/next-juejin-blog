@@ -52,7 +52,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
         style={{ height: "60px" }}
         items={items}
         defaultSelectedKeys={["homepage"]}
-        itemStyle={{ color: colorMode === "light" ? "#000" : "#fff" }}
+        color={colorMode === "light" ? "#000" : "#fff"}
       />
       <Search />
       <Flex>

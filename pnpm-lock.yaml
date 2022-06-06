@@ -22,7 +22,7 @@ specifiers:
   react-dom: 18.1.0
   react-icons: ^4.4.0
   react-spring: ^9.4.5
-  react-spring-menu: ^0.0.1
+  react-spring-menu: ^0.0.2
   rehype-autolink-headings: ^6.1.1
   rehype-prism-plus: ^1.4.0
   rehype-slug: ^5.0.1
@@ -52,7 +52,7 @@ dependencies:
   react-dom: 18.1.0_react@18.1.0
   react-icons: 4.4.0_react@18.1.0
   react-spring: 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
-  react-spring-menu: 0.0.1_wfhvqiprmys65wyvbjfgd3t6zi
+  react-spring-menu: 0.0.2_wfhvqiprmys65wyvbjfgd3t6zi
   styled-components: 5.3.5_ef5jwxihqo6n7gxfmzogljlgcm
   styled-jsx: 5.0.2_react@18.1.0
 
@@ -5758,8 +5758,8 @@ packages:
       use-sidecar: 1.1.2_xzblsqi5foayvoljr2geupzxea
     dev: false
 
-  /react-spring-menu/0.0.1_wfhvqiprmys65wyvbjfgd3t6zi:
-    resolution: {integrity: sha512-uddL7p8hiCoE965lOFlSxeafSkUb7qwRvTAeBa+r0ih6Bdna1hJHk9JgxqsDBiYVCawm/1mgCw9eLDeCYTMyGw==}
+  /react-spring-menu/0.0.2_wfhvqiprmys65wyvbjfgd3t6zi:
+    resolution: {integrity: sha512-eZSdf718QcAtADqhmpUzHsbWaOQsnhulWscaNqFS7ArHcE/mdP6acAU3jjGwRSdP/kus5UYPo5DHB9tCMAXgeg==}
     peerDependencies:
       react: ^18.1.0
       react-dom: ^18.1.0

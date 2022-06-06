@@ -23,7 +23,7 @@
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
     "react-spring": "^9.4.5",
-    "react-spring-menu": "^0.0.1",
+    "react-spring-menu": "^0.0.2",
     "styled-components": "^5.3.5",
     "styled-jsx": "^5.0.2"
   },

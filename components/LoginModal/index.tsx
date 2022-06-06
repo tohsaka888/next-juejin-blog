@@ -48,7 +48,7 @@ function LoginPanel({
 }) {
   const [username, setUsername] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-  const { loginStatus, setLoginStatus } = useContext(LoginStatusContext)!;
+  const { setLoginStatus } = useContext(LoginStatusContext)!;
   const toast = useToast()
 
   const login = useCallback(async () => {
@@ -60,16 +60,16 @@ function LoginPanel({
       }),
     })
     const data: LoginResponse = await res.json()
-    localStorage.setItem("token", data.token)
-    setLoginStatus({
-      status: true,
-      username: data.username,
-    })
     if (data.success) {
       toast({
         title: "登录成功",
         status: 'success',
         position: 'top'
+      })
+      localStorage.setItem("token", data.token)
+      setLoginStatus({
+        status: true,
+        username: data.username,
       })
     } else {
       toast({
@@ -176,10 +176,12 @@ const RegisterPanel = ({
         检测到您是第一次登录，请注册!
       </Alert>
       <Input
-        placeholder="邮箱"
+        placeholder="用户名"
         mb={"16px"}
         onFocus={() => dispatch({ type: "invite" })}
         onBlur={() => dispatch({ type: "pending" })}
+        autoComplete={"off"}
+        name={"username"}
         onChange={(e: any) => {
           setUsername(e.target.value)
         }}
@@ -187,6 +189,8 @@ const RegisterPanel = ({
       <Input
         type={"password"}
         placeholder={"请输入密码"}
+        autoComplete={"off"}
+        name={"password"}
         onFocus={() => dispatch({ type: "password" })}
         onBlur={() => dispatch({ type: "pending" })}
         onChange={(e: any) => {
@@ -197,6 +201,8 @@ const RegisterPanel = ({
         type={"password"}
         placeholder={"请再次输入密码"}
         errorBorderColor='red.300'
+        autoComplete="off"
+        name="confirmedPassword"
         mt={"16px"}
         onFocus={() => dispatch({ type: "password" })}
         onBlur={() => dispatch({ type: "pending" })}
@@ -323,6 +329,8 @@ const EmailPanel = ({
           placeholder={"请输入验证码"}
           onFocus={() => dispatch({ type: "password" })}
           onBlur={() => dispatch({ type: "pending" })}
+          autoComplete={"off"}
+          name="code"
           onChange={(event: any) => {
             setCode(event.target.value);
           }}

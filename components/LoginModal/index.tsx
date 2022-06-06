@@ -14,7 +14,8 @@ import {
   InputGroup,
   InputRightAddon,
 } from "@chakra-ui/react";
-import { ModalProps } from "config/type";
+import { baseUrl } from "config/baseUrl";
+import { LoginResponse, ModalProps } from "config/type";
 import Image from "next/image";
 import React, {
   useCallback,
@@ -38,6 +39,21 @@ function LoginPanel({
     React.SetStateAction<"login" | "register" | "forget">
   >;
 }) {
+  const [username, setUsername] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+
+  const login = useCallback(async () => {
+    const res = await fetch(`${baseUrl}/api/login`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password
+      }),
+    })
+    const data: LoginResponse = await res.json()
+    localStorage.setItem("token", data.token)
+  }, [username, password])
+
   return (
     <>
       <Input
@@ -45,14 +61,20 @@ function LoginPanel({
         mb={"16px"}
         onFocus={() => dispatch({ type: "invite" })}
         onBlur={() => dispatch({ type: "pending" })}
+        onChange={(e: any) => {
+          setUsername(e.target.value)
+        }}
       />
       <Input
         type={"password"}
         placeholder={"请输入密码"}
         onFocus={() => dispatch({ type: "password" })}
         onBlur={() => dispatch({ type: "pending" })}
+        onChange={(e: any) => {
+          setPassword(e.target.value)
+        }}
       />
-      <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"}>
+      <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"} onClick={login}>
         登录
       </Button>
       <Flex

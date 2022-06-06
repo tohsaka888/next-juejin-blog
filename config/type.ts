@@ -32,6 +32,11 @@ export type InfoResponse = {
   info: ArticleInfo;
 };
 
+export type LoginResponse = {
+  success: boolean;
+  token: string;
+};
+
 export type ModalProps = {
   isOpen: boolean;
   onOpen: () => void;

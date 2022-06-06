@@ -1,3 +1,5 @@
+import React from "react";
+
 export type MenuItemProps = {
   label: string;
   icon?: React.ReactNode;
@@ -37,6 +39,7 @@ export type LoginResponse = {
   token: string;
   msg?: string;
   needRegister?: boolean;
+  username: string;
 };
 
 export type ModalProps = {
@@ -52,3 +55,25 @@ export type ModalProps = {
 export type MailResponse = {
   success: boolean;
 };
+
+export type RegisterResponse = {
+  success: boolean;
+  msg?: string;
+};
+
+export type LoginStatusResponse = {
+  success: boolean;
+  msg?: string;
+  data: any;
+};
+
+
+export type LoginStatus = {
+  status: boolean;
+  username: string;
+}
+
+export type LoginStatusContextProps = {
+  loginStatus: LoginStatus;
+  setLoginStatus: React.Dispatch<React.SetStateAction<LoginStatus>>;
+}

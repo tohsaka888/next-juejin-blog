@@ -26,7 +26,12 @@ export default async function handler(
           <p>如果不是您本人操作，请无视此邮件</p>
       `
   };
-  await collection.insertOne({ email: mailAddress, code: code })
+  const isExist = await collection.findOne({ email: mailAddress })
+  if (isExist) {
+    await collection.updateOne({ email: mailAddress }, { $set: { code: code } })
+  } else {
+    await collection.insertOne({ email: mailAddress, code: code })
+  }
   await mailconfig.sendMail(mail)
   res.status(200).send({ success: true })
 }

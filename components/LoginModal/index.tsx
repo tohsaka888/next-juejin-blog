@@ -14,12 +14,16 @@ import {
   InputGroup,
   InputRightAddon,
   useToast,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { baseUrl } from "config/baseUrl";
-import { LoginResponse, ModalProps } from "config/type";
+import { LoginResponse, ModalProps, RegisterResponse } from "config/type";
+import { LoginStatusContext } from "context/Context";
 import Image from "next/image";
 import React, {
   useCallback,
+  useContext,
   useEffect,
   useReducer,
   useRef,
@@ -38,12 +42,14 @@ function LoginPanel({
 }: {
   dispatch: React.Dispatch<ACTION>;
   setPanel: React.Dispatch<
-    React.SetStateAction<"login" | "register" | "forget">
+    React.SetStateAction<"login" | "register" | "forget" | "email">
   >;
   onClose: () => void;
 }) {
   const [username, setUsername] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const { loginStatus, setLoginStatus } = useContext(LoginStatusContext)!;
+  const toast = useToast()
 
   const login = useCallback(async () => {
     const res = await fetch(`${baseUrl}/api/login`, {
@@ -55,14 +61,32 @@ function LoginPanel({
     })
     const data: LoginResponse = await res.json()
     localStorage.setItem("token", data.token)
+    setLoginStatus({
+      status: true,
+      username: data.username,
+    })
+    if (data.success) {
+      toast({
+        title: "登录成功",
+        status: 'success',
+        position: 'top'
+      })
+    } else {
+      toast({
+        title: data.msg,
+        status: 'error',
+        position: 'top'
+      })
+    }
+    setPanel("login")
     onClose()
 
-  }, [username, password, onClose])
+  }, [username, password, setLoginStatus, setPanel, onClose, toast])
 
   return (
     <>
       <Input
-        placeholder="邮箱/手机号(国际号码加区号)"
+        placeholder="邮箱/用户名"
         mb={"16px"}
         onFocus={() => dispatch({ type: "invite" })}
         onBlur={() => dispatch({ type: "pending" })}
@@ -88,7 +112,7 @@ function LoginPanel({
         justify={"space-between"}
         fontSize={"14px"}
       >
-        <Text cursor={"pointer"} onClick={() => setPanel("register")}>
+        <Text cursor={"pointer"} onClick={() => setPanel("email")}>
           验证码登录
         </Text>
         <Text cursor={"pointer"} onClick={() => setPanel("forget")}>
@@ -106,7 +130,110 @@ const RegisterPanel = ({
 }: {
   dispatch: React.Dispatch<ACTION>;
   setPanel: React.Dispatch<
-    React.SetStateAction<"login" | "register" | "forget">
+
+    React.SetStateAction<"login" | "register" | "forget" | "email">
+  >;
+  onClose: () => void;
+}) => {
+  const [username, setUsername] = useState<string>("")
+  const [password, setPassword] = useState<string>("")
+  const toast = useToast()
+
+  const register = useCallback(async () => {
+    const token = localStorage.getItem("token")
+    const res = await fetch(`${baseUrl}/api/register`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password,
+        token: token
+      }),
+    })
+    const data: RegisterResponse = await res.json()
+    if (data.success) {
+      toast({
+        title: "注册成功",
+        status: 'success',
+        position: 'top'
+      })
+    } else {
+      toast({
+        title: data.msg,
+        status: 'error',
+        position: 'top'
+      })
+    }
+    onClose()
+    setPanel("login")
+  }, [username, password, onClose, setPanel, toast])
+
+  const [confirmedPassword, setConfirmedPassword] = useState<string>("")
+
+  return (
+    <>
+      <Alert status='info' mb={"16px"}>
+        <AlertIcon />
+        检测到您是第一次登录，请注册!
+      </Alert>
+      <Input
+        placeholder="邮箱"
+        mb={"16px"}
+        onFocus={() => dispatch({ type: "invite" })}
+        onBlur={() => dispatch({ type: "pending" })}
+        onChange={(e: any) => {
+          setUsername(e.target.value)
+        }}
+      />
+      <Input
+        type={"password"}
+        placeholder={"请输入密码"}
+        onFocus={() => dispatch({ type: "password" })}
+        onBlur={() => dispatch({ type: "pending" })}
+        onChange={(e: any) => {
+          setPassword(e.target.value)
+        }}
+      />
+      <Input
+        type={"password"}
+        placeholder={"请再次输入密码"}
+        errorBorderColor='red.300'
+        mt={"16px"}
+        onFocus={() => dispatch({ type: "password" })}
+        onBlur={() => dispatch({ type: "pending" })}
+        isInvalid={confirmedPassword !== password}
+        onChange={(e: any) => {
+          setConfirmedPassword(e.target.value)
+        }}
+      />
+      <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"} onClick={register} disabled={confirmedPassword !== password}>
+        注册
+      </Button>
+      <Flex
+        color={"#1890ff"}
+        margin={"16px 0px"}
+        justify={"space-between"}
+        fontSize={"14px"}
+      >
+        <Text cursor={"pointer"} onClick={() => setPanel("login")}>
+          登录
+        </Text>
+        <Text cursor={"pointer"} onClick={() => setPanel("forget")}>
+          忘记密码?
+        </Text>
+      </Flex>
+    </>
+  );
+}
+
+
+const EmailPanel = ({
+  dispatch,
+  setPanel,
+  onClose
+}: {
+  dispatch: React.Dispatch<ACTION>;
+  setPanel: React.Dispatch<
+    React.SetStateAction<"login" | "register" | "forget" | "email">
   >;
   onClose: () => void;
 }) => {
@@ -115,6 +242,7 @@ const RegisterPanel = ({
   const [email, setEmail] = useState<string>("");
   const [code, setCode] = useState<string>("");
   const timerRef = useRef<number>(0);
+  const { setLoginStatus } = useContext(LoginStatusContext)!
   const toast = useToast()
   useEffect(() => {
     if (isSend) {
@@ -167,13 +295,21 @@ const RegisterPanel = ({
       })
     }
 
-    onClose()
+    if (data.needRegister) {
+      setPanel("register")
+    } else {
+      onClose()
+      setLoginStatus({
+        status: data.success,
+        username: data.username
+      })
+    }
 
-  }, [email, code, onClose, toast])
+  }, [email, code, toast, setPanel, onClose, setLoginStatus])
   return (
     <>
       <Input
-        placeholder="邮箱/手机号(国际号码加区号)"
+        placeholder="邮箱"
         mb={"16px"}
         onFocus={() => dispatch({ type: "invite" })}
         onBlur={() => dispatch({ type: "pending" })}
@@ -229,7 +365,7 @@ function LoginModal({ isOpen, onClose }: ModalProps) {
     }
   }, []);
   const [logo, dispatch] = useReducer(reducer, pendingLogin);
-  const [panel, setPannel] = useState<"login" | "register" | "forget">("login");
+  const [panel, setPannel] = useState<"login" | "register" | "forget" | "email">("login");
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -257,15 +393,23 @@ function LoginModal({ isOpen, onClose }: ModalProps) {
         </Box>
         <ModalHeader>
           {panel === "login" && "账密登录"}
-          {panel === "register" && "邮箱登录"}
+          {panel === "email" && "邮箱登录"}
           {panel === "forget" && "找回密码"}
+          {panel === "register" && "注册"}
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody zIndex={100}>
-          {panel === "login" ? (
+          {panel === "login" && (
             <LoginPanel dispatch={dispatch} setPanel={setPannel} onClose={onClose} />
-          ) : (
+          )}
+          {panel === "email" && (
+            <EmailPanel dispatch={dispatch} setPanel={setPannel} onClose={onClose} />
+          )}
+          {panel === "register" && (
             <RegisterPanel dispatch={dispatch} setPanel={setPannel} onClose={onClose} />
+          )}
+          {panel === "forget" && (
+            <EmailPanel dispatch={dispatch} setPanel={setPannel} onClose={onClose} />
           )}
         </ModalBody>
         <ModalFooter>

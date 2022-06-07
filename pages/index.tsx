@@ -11,9 +11,11 @@ import { ListResponse, ArticleBriefInfo } from "../config/type";
 import { ListContext } from "context/Context";
 import DailySign from "../components/DailySign/index";
 import Download from "components/Download";
+import { useState } from "react";
 
-const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
+const Home: NextPage<{ articleList: ArticleBriefInfo[] }> = ({ articleList }) => {
   const { colorMode } = useColorMode();
+  const [list, setList] = useState<ArticleBriefInfo[]>(articleList)
 
   return (
     <div className={styles.container}>
@@ -31,7 +33,7 @@ const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
           padding={"16px 18vw"}
           mt={"60px"}
         >
-          <ListContext.Provider value={list}>
+          <ListContext.Provider value={{ list, setList }}>
             <Content />
           </ListContext.Provider>
           <Sider>
@@ -71,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const data: ListResponse = await res.json();
   return {
     props: {
-      list: data.success ? data.list : [],
+      articleList: data.success ? data.list : [],
     },
   };
 };

@@ -77,3 +77,9 @@ export type LoginStatusContextProps = {
   loginStatus: LoginStatus;
   setLoginStatus: React.Dispatch<React.SetStateAction<LoginStatus>>;
 }
+
+export type AddResponse = {
+  success: boolean;
+  msg?: string;
+  id?: number | string;
+}

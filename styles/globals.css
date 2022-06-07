@@ -37,3 +37,12 @@ a {
 .toc a:hover {
   color: #1890ff;
 }
+
+.custom-code {
+  color: #000;
+  background: #f9f9f9;
+  border: 1px solid #cecece;
+  border-radius: 8px;
+  padding: 0px 6px;
+  margin: 0px 6px;
+}

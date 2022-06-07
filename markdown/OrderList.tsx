@@ -1,13 +1,15 @@
-import { OrderedList, ListItem } from "@chakra-ui/react";
 import React from "react";
 
 function OrderList(props: any) {
-  return <OrderedList ml={"48px"} {...props} mt={"8px"} />;
+  return <ol {...props} style={{ padding: '0px 36px' }} />;
+}
+
+function UnOrderList(props: any) {
+  return <ul {...props} style={{ padding: '0px 36px' }} />;
 }
 
 function OrderListItem(props: any) {
-  return <ListItem ml={"16px"} mb={"8px"} {...props} mt={"8px"} />;
+  return <li {...props} style={{ padding: '4px' }} />;
 }
 
-export default OrderList;
-export { OrderListItem };
+export { OrderListItem, OrderList, UnOrderList };

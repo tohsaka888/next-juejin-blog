@@ -83,3 +83,8 @@ export type AddResponse = {
   msg?: string;
   id?: number | string;
 }
+
+export type ListContext = {
+  list: ArticleBriefInfo[];
+  setList: React.Dispatch<React.SetStateAction<ArticleBriefInfo[]>>;
+}

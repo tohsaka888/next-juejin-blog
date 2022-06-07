@@ -61,7 +61,13 @@ const Home: NextPage<{ list: ArticleBriefInfo[] }> = ({ list }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`${baseUrl}/api/list`);
+  const res = await fetch(`${baseUrl}/api/list`, {
+    method: "POST",
+    body: JSON.stringify({
+      page: 1,
+      limit: 10,
+    })
+  });
   const data: ListResponse = await res.json();
   return {
     props: {

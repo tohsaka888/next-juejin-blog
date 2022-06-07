@@ -7,6 +7,10 @@ const nextConfig = {
   images: {
     domains: ["p3-juejin.byteimg.com", "p6-juejin.byteimg.com", "s1.aigei.com"],
   },
+  compiler: {
+    // ssr and displayName are configured by default
+    styledComponents: true,
+  },
   pageExtensions: ["js", "jsx", "ts", "tsx"],
 };
 

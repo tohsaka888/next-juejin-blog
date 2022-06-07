@@ -61,7 +61,7 @@ const ArticleDetail: NextPage<{
               </Text>
               <Flex>
                 <Text fontSize={"12px"}>
-                  {moment(info.date).format("YYYY年MM月DD日 mm:ss")}
+                  {moment.utc(info.date).format("YYYY年MM月DD日 hh:mm")}
                 </Text>
                 <Text fontSize={"12px"} ml={"16px"}>
                   {info.views} 阅读
@@ -72,7 +72,7 @@ const ArticleDetail: NextPage<{
         </Flex>
         <Image
           src={info.coverImage}
-          style={{ width: "100%" }}
+          style={{ width: "100%", aspectRatio: "5 / 3" }}
           alt=""
           mb={"24px"}
         />

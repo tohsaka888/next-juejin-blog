@@ -74,17 +74,42 @@ function EditDraft() {
       }),
     })
     const data = await res.json()
+    if (data.success) {
+      toastRef.current = toast({
+        description: "发布成功",
+        status: "success",
+        position: "top",
+      });
+      window.setTimeout(() => {
+        toast.closeAll();
+      }, 1000);
+    } else {
+      toastRef.current = toast({
+        description: "发布失败",
+        status: "error",
+        position: "top",
+      });
+      window.setTimeout(() => {
+        toast.closeAll();
+      }, 1000);
+    }
+    localStorage.setItem("draft", "** Hello world!!! **");
+    setIntro("");
+    setTitle("");
+    setTag("");
+    setCoverImage("");
+    setValue("** Hello world!!! **");
     onClose()
-  }, [coverImage, intro, loginStatus.username, onClose, tag, title, value]);
+  }, [coverImage, intro, loginStatus.username, onClose, tag, title, toast, value]);
 
   return (
     <>
       <Box height={"100vh"} pt={"70px"}>
         <Flex width={"100%"} mb={"8px"}>
-          <Input placeholder="请输入文章标题" width={"45vw"} onChange={(e: any) => {
+          <Input placeholder="请输入文章标题" value={title} width={"45vw"} onChange={(e: any) => {
             setTitle(e.target.value)
           }} />
-          <Input placeholder="请输入封面图url" width={"45vw"} onChange={(e: any) => {
+          <Input placeholder="请输入封面图url" value={coverImage} width={"45vw"} onChange={(e: any) => {
             setCoverImage(e.target.value)
           }} />
           <Button

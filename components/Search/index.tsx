@@ -60,7 +60,6 @@ function Search({ onOpen }: { onOpen: () => void }) {
           onClick={() => {
             if (loginStatus.status) {
               const token = localStorage.getItem("token");
-              console.log(token);
               router.push(`/drafts/${token}`)
             } else {
               onOpen()

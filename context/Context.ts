@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { ArticleBriefInfo } from "../config/type";
+import { ListContext as ListContextProps } from "../config/type";
 
-export const ListContext = createContext<ArticleBriefInfo[] | null>(null);
+export const ListContext = createContext<ListContextProps | null>(null);
 export const LoginStatusContext = createContext<any | null>(null);

@@ -42,7 +42,7 @@ function ArticleCard() {
                 >
                   |
                 </Text>
-                <Text fontSize={"13px"}>{moment(item.date).fromNow()}</Text>
+                <Text fontSize={"13px"}>{moment.utc(item.date).fromNow()}</Text>
                 <Text
                   fontSize={"13px"}
                   // color={"#4e5969"}
@@ -51,16 +51,9 @@ function ArticleCard() {
                 >
                   |
                 </Text>
-                {item.tags.map((tag, index) => (
-                  <React.Fragment key={tag}>
-                    <Text key={tag} fontSize={"13px"}>
-                      {tag}
-                    </Text>
-                    {index !== item.tags.length - 1 && (
-                      <BsDot style={{ margin: "0px 3px" }} />
-                    )}
-                  </React.Fragment>
-                ))}
+                <Text fontSize={"13px"}>
+                  {item.tags}
+                </Text>
               </Flex>
               <Flex align={"center"} justify={"space-between"} mt={"8px"}>
                 <Box width={"calc(48vw - 200px)"}>

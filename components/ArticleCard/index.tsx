@@ -12,7 +12,7 @@ moment.locale("zh-cn");
 
 function ArticleCard() {
   const route = useRouter();
-  const list = useContext(ListContext)!;
+  const { list } = useContext(ListContext)!;
   const trail = useTrail(list.length, {
     from: { opacity: 0, transform: "translate3d(0,20px,0)" },
     to: { opacity: 1, transform: "translate3d(0,0px,0)" },

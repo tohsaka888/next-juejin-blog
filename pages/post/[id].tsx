@@ -7,7 +7,6 @@ import { ArticleInfo, InfoResponse } from "../../config/type";
 import {
   Box,
   useColorMode,
-  OrderedList,
   Flex,
   Avatar,
   Text,
@@ -16,7 +15,7 @@ import {
 import rehypePrism from "rehype-prism-plus";
 import { H1, H2, H3, H4, H5, H6 } from "markdown/Heading";
 import Paragraph from "markdown/Paragraph";
-import { OrderListItem } from "markdown/OrderList";
+import { OrderListItem, OrderList, UnOrderList } from "markdown/OrderList";
 import codesandbox from "remark-codesandbox";
 import embedIamge from "remark-embed-images";
 import extendedTable from "remark-extended-table";
@@ -29,7 +28,9 @@ import toc from "@jsdevtools/rehype-toc";
 import Toc from "markdown/Toc";
 import { shadows } from "config/theme";
 import moment from "moment";
-import { PrismTheme } from "../../styles/PrismTheme";
+import { PrismDarkTheme, PrismLightTheme } from "../../styles/PrismTheme";
+import CodeSandBox from "markdown/CodeSandBox";
+import Code from "markdown/Code";
 
 const ArticleDetail: NextPage<{
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -76,7 +77,7 @@ const ArticleDetail: NextPage<{
           alt=""
           mb={"24px"}
         />
-        <PrismTheme>
+        {colorMode === 'dark' ? <PrismDarkTheme>
           <MDXRemote
             {...source}
             components={{
@@ -87,14 +88,35 @@ const ArticleDetail: NextPage<{
               h5: H5,
               h6: H6,
               p: Paragraph,
-              ol: OrderedList,
-              li: OrderListItem,
               nav: Toc,
+              CodeSandBox,
+              ol: OrderList,
+              li: OrderListItem,
+              ul: UnOrderList,
+              code: Code,
             }}
           />
-        </PrismTheme>
+        </PrismDarkTheme> : <PrismLightTheme>
+          <MDXRemote
+            {...source}
+            components={{
+              h1: H1,
+              h2: H2,
+              h3: H3,
+              h4: H4,
+              h5: H5,
+              h6: H6,
+              p: Paragraph,
+              nav: Toc,
+              CodeSandBox,
+              ol: OrderList,
+              li: OrderListItem,
+              ul: UnOrderList,
+              code: Code,
+            }}
+          />
+        </PrismLightTheme>}
       </Box>
-      <PrismTheme />
     </Box>
   );
 };

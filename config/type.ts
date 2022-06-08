@@ -73,6 +73,7 @@ export type LoginStatusResponse = {
 export type LoginStatus = {
   status: boolean;
   username: string;
+  userId: number | string;
 }
 
 export type LoginStatusContextProps = {

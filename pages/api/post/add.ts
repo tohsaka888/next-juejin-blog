@@ -1,6 +1,5 @@
 import { AddResponse } from 'config/type';
 import connectDB from 'lib/connectDb';
-import moment from 'moment';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler
@@ -18,6 +17,7 @@ export default async function handler
     const views = 0;
     const like = 0;
     const comments = 0;
+    const authorId = body.authorId;
 
     const db = await connectDB();
     const articleCollection = db.collection('articles');
@@ -32,7 +32,8 @@ export default async function handler
       intro,
       views,
       like,
-      comments
+      comments,
+      authorId
     });
 
     const listCollection = await db.collection('list');
@@ -47,7 +48,8 @@ export default async function handler
       views,
       like,
       comments,
-      tags
+      tags,
+      authorId
     });
     res.status(200).json({
       success: true,

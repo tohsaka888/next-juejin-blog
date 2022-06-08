@@ -17,18 +17,25 @@ export default async function handler(
     if (body.t === 0 || !body.t) {
       const emailLogin = await userCollection.findOne({ email: body.username, password: body.password })
       const userLogin = await userCollection.findOne({ username: body.username, password: body.password })
+      let token = ''
+      delete emailLogin.password
+      delete userLogin.password
       if (emailLogin || userLogin) {
-        const token = jwt.sign(body, 'shhhhh');
         let username = ''
+        let userId = ''
         if (emailLogin) {
           username = emailLogin.username
+          userId = emailLogin._id
+          token = jwt.sign({ username: emailLogin.username, userId: emailLogin._id }, 'shhhhh');
         }
         if (userLogin) {
           username = userLogin.username
+          userId = userLogin._id
+          token = jwt.sign({ username: userLogin.username, userId: userLogin.userId }, 'shhhhh');
         }
-        res.status(200).json({ success: true, token: token, username: username });
+        res.status(200).json({ success: true, token: token, username: username, userId: userId });
       } else {
-        res.status(200).json({ success: false, msg: '账号或密码错误', token: '', username: '' });
+        res.status(200).json({ success: false, msg: '账号或密码错误', token: '', username: '', userId: '' });
       }
     } else {
 
@@ -37,12 +44,13 @@ export default async function handler(
 
       if (authcode.code === body.code) {
         const token = jwt.sign({ email: body.email }, 'shhhhh');
+        let result = null
         if (!user) {
-          await userCollection.insertOne({ email: body.email, token: token })
+          result = await userCollection.insertOne({ email: body.email, token: token })
         }
-        res.send({ success: true, token: token, needRegister: !user, username: !user ? '' : user.username });
+        res.send({ success: true, token: token, needRegister: !user, username: !user ? '' : user.username, userId: result?.insertedId });
       } else {
-        res.send({ success: false, msg: '验证码错误', token: '', username: '' })
+        res.send({ success: false, msg: '验证码错误', token: '', username: '', userId: '' });
       }
 
       setTimeout(() => {
@@ -50,9 +58,10 @@ export default async function handler(
       }, 5 * 60 * 1000)
     }
   } catch (error: any) {
-    res.status(404).send({
+    res.status(500).send({
       success: false, msg: error.message, token: '',
-      username: ""
+      username: "",
+      userId: ""
     })
   }
 }

@@ -10,6 +10,6 @@ export default async function handler(
   const body = JSON.parse(req.body || {});
   const db = await connectDB();
   const collection = db.collection("user");
-  collection.updateOne({ token: body.token }, { $set: { username: body.username, password: body.password } })
+  await collection.updateOne({ token: body.token }, { $set: { username: body.username, password: body.password } })
   res.status(200).json({ success: true, msg: '注册成功' });
 }

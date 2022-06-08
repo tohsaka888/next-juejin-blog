@@ -68,7 +68,7 @@ function Content() {
       />
       <Divider />
       <InfiniteScroll dataLength={10} next={fetchMoreData} hasMore={!(page === -1)} loader={<Loading />} style={{ overflowY: 'hidden' }}>
-        <ArticleCard />
+        <ArticleCard authorList={[]} />
       </InfiniteScroll>
     </Box>
   );

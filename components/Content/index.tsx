@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, useColorMode, Divider, Skeleton, SkeletonText, Flex } from "@chakra-ui/react";
 import { shadows } from "../../config/theme";
 import ArticleCard from "components/ArticleCard";
@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { baseUrl } from "config/baseUrl";
 import { ListContext } from "context/Context";
+import { useRouter } from "next/router";
 const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
 const items: MenuItemProps[] = [
@@ -33,12 +34,13 @@ function Loading() {
   )
 }
 
-function Content() {
+function Content({ tags }: { tags?: string }) {
   const { colorMode } = useColorMode();
   const { setList } = useContext(ListContext)!
   const [page, setPage] = useState<number>(2);
+  const router = useRouter();
   const fetchMoreData = useCallback(async () => {
-    const res = await fetch(`${baseUrl}/api/list`, {
+    const res = await fetch(`${baseUrl}/api${tags ? '/tag/' + tags : '/list'}`, {
       method: "POST",
       body: JSON.stringify({
         page: page,
@@ -52,7 +54,27 @@ function Content() {
     } else {
       setPage(-1)
     }
-  }, [page, setList])
+  }, [page, setList, tags])
+
+  useEffect(() => {
+    if (tags === '首页') {
+      router.push('/')
+    }
+    if (tags) {
+      const fetchData = async () => {
+        const res = await fetch(`${baseUrl}/api/tag/${tags}`, {
+          method: "POST",
+          body: JSON.stringify({
+            page: 1,
+            limit: 10
+          })
+        })
+        const data = await res.json()
+        setList(data.list)
+      }
+      fetchData()
+    }
+  }, [setList, tags])
   return (
     <Box
       flex={3}

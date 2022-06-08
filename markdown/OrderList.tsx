@@ -1,11 +1,11 @@
 import React from "react";
 
 function OrderList(props: any) {
-  return <ol {...props} style={{ padding: '0px 36px' }} />;
+  return <ol {...props} style={{ padding: '0px 8px' }} />;
 }
 
 function UnOrderList(props: any) {
-  return <ul {...props} style={{ padding: '0px 36px' }} />;
+  return <ul {...props} style={{ padding: '0px 8px' }} />;
 }
 
 function OrderListItem(props: any) {

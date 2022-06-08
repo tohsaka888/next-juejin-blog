@@ -1,8 +1,10 @@
 import React from "react";
-import { Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 function Paragraph(props: any) {
-  return <Text margin={"8px 24px"} {...props} ml={"4px"} />;
+  return (
+    <div style={{ margin: '8px' }} {...props} />
+  );
 }
 
 export default Paragraph;

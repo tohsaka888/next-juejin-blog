@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, useColorMode, Divider, Skeleton, SkeletonText, Flex } from "@chakra-ui/react";
 import { shadows } from "../../config/theme";
 import ArticleCard from "components/ArticleCard";
-import { ListResponse, MenuItemProps } from "config/type";
+import { ArticleBriefInfo, ListResponse, MenuItemProps } from "config/type";
 import dynamic from "next/dynamic";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { baseUrl } from "config/baseUrl";
@@ -42,9 +42,9 @@ function Content({ tags }: { tags?: string }) {
   const { colorMode } = useColorMode();
   const { setList } = useContext(ListContext)!
   const [page, setPage] = useState<number>(2);
-  const router = useRouter();
+  const [currentList, setCurrentList] = useState<ArticleBriefInfo[]>([])
+  const router = useRouter()
   const fetchMoreData = useCallback(async () => {
-    console.log('run' + page)
     const res = await fetch(`${baseUrl}/api${tags ? '/tag/' + tags : '/list'}`, {
       method: "POST",
       body: JSON.stringify({
@@ -54,6 +54,7 @@ function Content({ tags }: { tags?: string }) {
     })
     const data: ListResponse = await res.json()
     setList(list => [...list, ...data.list])
+    setCurrentList(data.list)
     if (data.list.length === 10) {
       setPage(page + 1)
     } else {
@@ -94,11 +95,12 @@ function Content({ tags }: { tags?: string }) {
         color={colorMode === "light" ? "#000" : "#fff"}
       />
       <Divider />
-      <InfiniteScroll dataLength={10} next={fetchMoreData} endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>~~到底啦~~</b>
-        </p>
-      } hasMore={!(page === -1)} loader={<Loading />}>
+      <InfiniteScroll dataLength={currentList.length} next={fetchMoreData}
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>~~到底啦~~</b>
+          </p>
+        } hasMore={!(page === -1)} loader={<Loading />}>
         <ArticleCard authorList={[]} />
       </InfiniteScroll>
     </Box>

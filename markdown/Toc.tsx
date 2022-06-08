@@ -17,6 +17,8 @@ function Toc(props: any) {
       bg={colorMode === "light" ? "#fff" : undefined}
       alignItems={"center"}
       flexDir={"column"}
+      maxH={'700px'}
+      overflowY={"auto"}
     >
 
       <Text mt={"12px"} mb={"12px"} fontSize={"17px"} fontWeight={"700"} alignSelf={"flex-start"} ml={'12px'}>

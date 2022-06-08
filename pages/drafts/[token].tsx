@@ -101,7 +101,7 @@ function EditDraft() {
     setCoverImage("");
     setValue("** Hello world!!! **");
     onClose()
-  }, [coverImage, intro, loginStatus.username, onClose, tag, title, toast, value]);
+  }, [coverImage, intro, loginStatus.userId, loginStatus.username, onClose, tag, title, toast, value]);
 
   return (
     <>

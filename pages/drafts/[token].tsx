@@ -71,6 +71,7 @@ function EditDraft() {
         content: value,
         author: loginStatus.username,
         coverImage: coverImage,
+        authorId: loginStatus.userId,
       }),
     })
     const data = await res.json()

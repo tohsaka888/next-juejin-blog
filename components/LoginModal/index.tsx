@@ -70,6 +70,7 @@ function LoginPanel({
       setLoginStatus({
         status: true,
         username: data.username,
+        userId: data.userId
       })
     } else {
       toast({
@@ -307,7 +308,8 @@ const EmailPanel = ({
       onClose()
       setLoginStatus({
         status: data.success,
-        username: data.username
+        username: data.username,
+        userId: data.userId
       })
     }
 

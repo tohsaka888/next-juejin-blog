@@ -18,11 +18,11 @@ function Toc(props: any) {
       alignItems={"center"}
       flexDir={"column"}
     >
-      <Box>
-        <Text mt={"12px"} mb={"12px"} fontSize={"17px"} fontWeight={"700"} alignSelf={"flex-start"} ml={'12px'}>
-          目录
-        </Text>
-      </Box>
+
+      <Text mt={"12px"} mb={"12px"} fontSize={"17px"} fontWeight={"700"} alignSelf={"flex-start"} ml={'12px'}>
+        目录
+      </Text>
+
       <Divider mb={"12px"} />
       {props.children}
     </Flex>

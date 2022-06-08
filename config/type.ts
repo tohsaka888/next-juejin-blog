@@ -17,6 +17,7 @@ export type ArticleBriefInfo = {
   like: number; // 点赞数
   comments: number; // 评论数
   id: number; // 文章id
+  authorId: number; // 作者id
 };
 
 export type ArticleInfo = {
@@ -40,6 +41,7 @@ export type LoginResponse = {
   msg?: string;
   needRegister?: boolean;
   username: string;
+  userId: number | string;
 };
 
 export type ModalProps = {
@@ -87,4 +89,11 @@ export type AddResponse = {
 export type ListContext = {
   list: ArticleBriefInfo[];
   setList: React.Dispatch<React.SetStateAction<ArticleBriefInfo[]>>;
+}
+
+export type UserInfoResponse = {
+  success: boolean;
+  msg?: string;
+  articleCount: number;
+  articles: ArticleBriefInfo[];
 }

@@ -17,21 +17,21 @@ export default async function handler(
     if (body.t === 0 || !body.t) {
       const emailLogin = await userCollection.findOne({ email: body.username, password: body.password })
       const userLogin = await userCollection.findOne({ username: body.username, password: body.password })
+
       let token = ''
-      delete emailLogin.password
-      delete userLogin.password
       if (emailLogin || userLogin) {
         let username = ''
         let userId = ''
         if (emailLogin) {
           username = emailLogin.username
           userId = emailLogin._id
-          token = jwt.sign({ username: emailLogin.username, userId: emailLogin._id }, 'shhhhh');
+          token = jwt.sign({ username: emailLogin.username, userId: userId }, 'shhhhh');
         }
         if (userLogin) {
+
           username = userLogin.username
           userId = userLogin._id
-          token = jwt.sign({ username: userLogin.username, userId: userLogin.userId }, 'shhhhh');
+          token = jwt.sign({ username: userLogin.username, userId: userId }, 'shhhhh');
         }
         res.status(200).json({ success: true, token: token, username: username, userId: userId });
       } else {
@@ -43,7 +43,7 @@ export default async function handler(
       const user = await userCollection.findOne({ email: body.email })
 
       if (authcode.code === body.code) {
-        const token = jwt.sign({ email: body.email }, 'shhhhh');
+        const token = jwt.sign({ email: body.email, userId: user._id }, 'shhhhh');
         let result = null
         if (!user) {
           result = await userCollection.insertOne({ email: body.email, token: token })

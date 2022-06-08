@@ -98,3 +98,10 @@ export type UserInfoResponse = {
   articleCount: number;
   articles: ArticleBriefInfo[];
 }
+
+export type AuthorArticleResponse = {
+  success: boolean;
+  msg?: string;
+  list: ArticleBriefInfo[];
+  author: string;
+}

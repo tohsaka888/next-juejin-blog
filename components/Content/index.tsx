@@ -27,10 +27,14 @@ const items: MenuItemProps[] = [
 
 function Loading() {
   return (
-    <Flex justify={"space-between"} padding={"16px"}>
-      <SkeletonText mt='8px' noOfLines={4} spacing='4' flex={1} mr={"16px"} />
-      <Skeleton width={"150px"} height={"100px"} />
-    </Flex>
+    <>
+      {[1, 2, 3].map(item => (
+        <Flex key={item} justify={"space-between"} padding={"16px"}>
+          <SkeletonText mt='8px' noOfLines={4} spacing='4' flex={1} mr={"16px"} />
+          <Skeleton width={"150px"} height={"100px"} />
+        </Flex>
+      ))}
+    </>
   )
 }
 
@@ -40,6 +44,7 @@ function Content({ tags }: { tags?: string }) {
   const [page, setPage] = useState<number>(2);
   const router = useRouter();
   const fetchMoreData = useCallback(async () => {
+    console.log('run' + page)
     const res = await fetch(`${baseUrl}/api${tags ? '/tag/' + tags : '/list'}`, {
       method: "POST",
       body: JSON.stringify({
@@ -50,7 +55,7 @@ function Content({ tags }: { tags?: string }) {
     const data: ListResponse = await res.json()
     setList(list => [...list, ...data.list])
     if (data.list.length === 10) {
-      setPage(page => page + 1)
+      setPage(page + 1)
     } else {
       setPage(-1)
     }
@@ -74,7 +79,7 @@ function Content({ tags }: { tags?: string }) {
       }
       fetchData()
     }
-  }, [setList, tags])
+  }, [router, setList, tags])
   return (
     <Box
       flex={3}
@@ -89,7 +94,11 @@ function Content({ tags }: { tags?: string }) {
         color={colorMode === "light" ? "#000" : "#fff"}
       />
       <Divider />
-      <InfiniteScroll dataLength={10} next={fetchMoreData} hasMore={!(page === -1)} loader={<Loading />} style={{ overflowY: 'hidden' }}>
+      <InfiniteScroll dataLength={10} next={fetchMoreData} endMessage={
+        <p style={{ textAlign: 'center' }}>
+          <b>~~到底啦~~</b>
+        </p>
+      } hasMore={!(page === -1)} loader={<Loading />}>
         <ArticleCard authorList={[]} />
       </InfiniteScroll>
     </Box>

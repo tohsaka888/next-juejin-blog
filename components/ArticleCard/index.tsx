@@ -1,19 +1,20 @@
-import { useColorMode, Box, Divider, Flex, Text } from "@chakra-ui/react";
+import { useColorMode, Box, Divider, Flex, Text, list } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { ListContext } from "../../context/Context";
 import { a, useTrail, config } from "react-spring";
-import { BsChatDots, BsDot, BsEye, BsHandThumbsUp } from "react-icons/bs";
+import { BsChatDots, BsEye, BsHandThumbsUp } from "react-icons/bs";
 import moment from "moment";
 import "moment/locale/zh-cn";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { ArticleBriefInfo } from "config/type";
 
 moment.locale("zh-cn");
 
-function ArticleCard() {
+function ArticleCard({ authorList = [] }: { authorList: ArticleBriefInfo[] }) {
   const route = useRouter();
-  const { list } = useContext(ListContext)!;
-  const trail = useTrail(list.length, {
+  const props = useContext(ListContext);
+  const trail = useTrail(authorList.length || props?.list.length || 0, {
     from: { opacity: 0, transform: "translate3d(0,20px,0)" },
     to: { opacity: 1, transform: "translate3d(0,0px,0)" },
     config: config.gentle,
@@ -21,7 +22,7 @@ function ArticleCard() {
   return (
     <>
       {trail.map((style, index) => {
-        const item = list[index];
+        const item = authorList[index] || props?.list[index];
         return (
           <a.div key={item.id} style={{ ...style, padding: "8px 16px" }}>
             <Box width={"100%"} padding={"8px 0px"}>
@@ -31,6 +32,9 @@ function ArticleCard() {
                   cursor={"pointer"}
                   fontSize={"13px"}
                   _hover={{ color: "#1d7dfa" }}
+                  onClick={() => {
+                    route.push(`/user/${item.authorId}`);
+                  }}
                 >
                   {item.author}
                 </Text>

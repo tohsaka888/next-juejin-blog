@@ -13,6 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [loginStatus, setLoginStatus] = useState<LoginStatus>({
     status: false,
     username: "",
+    userId: ''
   });
 
   useEffect(() => {
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       setLoginStatus({
         status: data.success,
         username: data.data.username,
+        userId: data.data.userId
       });
     }
     if (localStorage.getItem("token")) {
@@ -35,6 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       setLoginStatus({
         status: false,
         username: "",
+        userId: ''
       });
     }
   }, [])

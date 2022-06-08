@@ -97,7 +97,7 @@ function Content({ tags }: { tags?: string }) {
       <Divider />
       <InfiniteScroll dataLength={currentList.length} next={fetchMoreData}
         endMessage={
-          <p style={{ textAlign: 'center' }}>
+          <p style={{ textAlign: 'center', marginBottom: '16px' }}>
             <b>~~到底啦~~</b>
           </p>
         } hasMore={!(page === -1)} loader={<Loading />}>

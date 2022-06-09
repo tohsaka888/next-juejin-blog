@@ -31,6 +31,7 @@ import moment from "moment";
 import { PrismDarkTheme, PrismLightTheme } from "../../styles/PrismTheme";
 import CodeSandBox from "markdown/CodeSandBox";
 import Code from "markdown/Code";
+import Comment from "components/Comment";
 
 const ArticleDetail: NextPage<{
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -116,6 +117,7 @@ const ArticleDetail: NextPage<{
             }}
           />
         </PrismLightTheme>}
+        <Comment />
       </Box>
     </Box>
   );

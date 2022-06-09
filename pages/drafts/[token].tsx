@@ -158,6 +158,7 @@ function EditDraft() {
               <option value='后端'>后端</option>
               <option value='Android'>Android</option>
               <option value='IOS'>IOS</option>
+              <option value='人工智能'>人工智能</option>
               <option value='算法'>算法</option>
             </Select>
             <Textarea placeholder="请输入简介" rows={8} margin={'16px 0px'} onChange={(e: any) => {

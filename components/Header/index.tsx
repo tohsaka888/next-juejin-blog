@@ -93,7 +93,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
       </Flex>
       <Flex width={loginStatus.status ? "150px" : '100px'} justify={"flex-end"}>
         {loginStatus.status ? (
-          <Flex justify={"space-between"} width={"200px"}>
+          <Flex justify={"space-between"} width={"200px"} cursor={"pointer"}>
             <Avatar onClick={() => {
               router.push(`/my/${loginStatus.userId}`)
             }} width={"38px"} height={"38px"} src={'https://pic3.zhimg.com/80/v2-e987c60f8776df32c010265d2b81526e_720w.jpg'} />

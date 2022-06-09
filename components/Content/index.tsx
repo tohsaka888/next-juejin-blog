@@ -25,7 +25,7 @@ const items: MenuItemProps[] = [
   },
 ];
 
-function Loading() {
+export function Loading() {
   return (
     <>
       {[1, 2, 3].map(item => (

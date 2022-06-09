@@ -34,6 +34,9 @@ import CodeSandBox from "markdown/CodeSandBox";
 import Code from "markdown/Code";
 import Comment from "components/Comment";
 import { BsChatDots, BsHandThumbsUp, BsStar } from "react-icons/bs";
+import remarkDirectiveRehype from 'remark-directive-rehype'
+import remarkHint from 'remark-hint'
+
 
 const ArticleDetail: NextPage<{
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -160,6 +163,8 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         reamrkTypescript,
         directive,
         remarkGfm,
+        remarkDirectiveRehype,
+        remarkHint,
       ],
       rehypePlugins: [
         rehypePrism,
@@ -167,7 +172,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         slug,
         [toc, { tight: false }],
       ],
-      format: "mdx",
     },
   });
   data.info.content = "";

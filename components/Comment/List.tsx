@@ -28,6 +28,11 @@ function List({ comments }: { comments: CommentList[] }) {
           </Box>
         )
       })}
+      {comments.length === 0 &&
+        <Flex align={"center"} height={'300px'} justify={'center'}>
+          <Text fontSize={"18px"} fontWeight={"700"} textAlign={"center"} >暂无评论</Text>
+        </Flex>
+      }
     </Box>
   )
 }

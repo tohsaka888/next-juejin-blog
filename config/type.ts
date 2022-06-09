@@ -110,3 +110,22 @@ export type DeleteResponse = {
   success: boolean;
   msg?: string;
 }
+
+export type AddCommentResponse = {
+  success: boolean;
+  msg?: string;
+}
+
+export type CommentList = {
+  username: string;
+  avatarUrl: string;
+  comment: string;
+  date: string;
+  articleId: string;
+}
+
+export type CommentResponse = {
+  success: boolean;
+  msg?: string;
+  list: CommentList[];
+}

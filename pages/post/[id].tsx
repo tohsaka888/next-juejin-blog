@@ -11,6 +11,7 @@ import {
   Avatar,
   Text,
   Image,
+  Circle,
 } from "@chakra-ui/react";
 import rehypePrism from "rehype-prism-plus";
 import { H1, H2, H3, H4, H5, H6 } from "markdown/Heading";
@@ -32,6 +33,7 @@ import { PrismDarkTheme, PrismLightTheme } from "../../styles/PrismTheme";
 import CodeSandBox from "markdown/CodeSandBox";
 import Code from "markdown/Code";
 import Comment from "components/Comment";
+import { BsChatDots, BsHandThumbsUp, BsStar } from "react-icons/bs";
 
 const ArticleDetail: NextPage<{
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -41,13 +43,34 @@ const ArticleDetail: NextPage<{
 }> = ({ source, info, id, comments }) => {
   const { colorMode } = useColorMode();
   return (
-    <Box bg={colorMode === "light" ? "#f9f9f9" : undefined} pt={"80px"}>
+    <Flex bg={colorMode === "light" ? "#f9f9f9" : undefined} pt={"80px"}>
+      <Box width={"5vw"} left={'10vw'} pt={'80px'}
+        mr={'16px'} height={"500px"} position={'fixed'}>
+        <Flex
+          bg={colorMode === "light" ? "#fff" : undefined}
+          shadow={shadows[colorMode]} width={"50px"} height={"50px"}
+          justify={"center"} align={"center"} borderRadius={"50%"}>
+          <BsHandThumbsUp size={24} />
+        </Flex>
+        <Flex
+          bg={colorMode === "light" ? "#fff" : undefined} mt={'18px'}
+          shadow={shadows[colorMode]} width={"50px"} height={"50px"}
+          justify={"center"} align={"center"} borderRadius={"50%"}>
+          <BsChatDots size={24} />
+        </Flex>
+        <Flex
+          bg={colorMode === "light" ? "#fff" : undefined} mt={'18px'}
+          shadow={shadows[colorMode]} width={"50px"} height={"50px"}
+          justify={"center"} align={"center"} borderRadius={"50%"}>
+          <BsStar size={24} />
+        </Flex>
+      </Box>
       <Box
         width="55vw"
-        ml={"13vw"}
         bg={colorMode === "light" ? "#fff" : undefined}
         boxShadow={shadows[colorMode]}
         padding={"16px 24px"}
+        ml={'16vw'}
       >
         <H1>{info.title}</H1>
         <Flex justify={"space-between"}>
@@ -121,7 +144,7 @@ const ArticleDetail: NextPage<{
         </PrismLightTheme>}
         <Comment id={id} comments={comments} />
       </Box>
-    </Box>
+    </Flex>
   );
 };
 

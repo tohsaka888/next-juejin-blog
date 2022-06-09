@@ -8,7 +8,7 @@ function Toc(props: any) {
     <Flex
       position={"fixed"}
       {...props}
-      right={"13vw"}
+      right={"10vw"}
       top={"80px"}
       maxW={"18vw"}
       width={"18vw"}

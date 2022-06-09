@@ -3,14 +3,16 @@ import ArticleCard from 'components/ArticleCard';
 import { baseUrl } from 'config/baseUrl';
 import { shadows } from 'config/theme';
 import { ArticleBriefInfo, AuthorArticleResponse } from 'config/type';
+import useScreenSize from 'hooks/useScreenSize';
 import { GetServerSideProps, NextPage } from 'next';
 import React, { useState } from 'react'
 
 const My: NextPage<{ list: ArticleBriefInfo[], author: string }> = ({ list, author }) => {
   const { colorMode } = useColorMode()
   const [isDelete, setIsDelete] = useState<boolean>(false);
+  const screenSize = useScreenSize();
   return (
-    <Box width={"50vw"} margin={"80px auto 0px auto"} justifyContent={"space-between"}>
+    <Box width={"50vw"} margin={"80px auto 0px auto"} justifyContent={"space-between"} minHeight={screenSize.height - 80}>
       <Flex shadow={shadows[colorMode]} mb={"16px"} padding={'24px 36px'} align={"center"} width={"50vw"} justifyContent={"space-between"}>
         <Flex>
           <Avatar size={'xl'} src={"https://pic3.zhimg.com/80/v2-e987c60f8776df32c010265d2b81526e_720w.jpg"} mr={"24px"} />

@@ -55,7 +55,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
         defaultSelectedKeys={["homepage"]}
         color={colorMode === "light" ? "#000" : "#fff"}
         onClick={(e: any) => {
-          router.push(e.target.innerText);
+          router.push('/' + e.target.innerText);
         }}
       />
       <Search onOpen={onOpen} />

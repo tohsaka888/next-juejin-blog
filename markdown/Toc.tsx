@@ -9,7 +9,7 @@ function Toc(props: any) {
       position={"fixed"}
       {...props}
       right={"10vw"}
-      top={"80px"}
+      top={"5rem"}
       maxW={"18vw"}
       width={"18vw"}
       boxShadow={shadows[colorMode]}
@@ -17,15 +17,15 @@ function Toc(props: any) {
       bg={colorMode === "light" ? "#fff" : undefined}
       alignItems={"center"}
       flexDir={"column"}
-      maxH={'700px'}
+      maxH={'43.75rem'}
       overflowY={"auto"}
     >
 
-      <Text mt={"12px"} mb={"12px"} fontSize={"17px"} fontWeight={"700"} alignSelf={"flex-start"} ml={'12px'}>
+      <Text mt={".75rem"} mb={".75rem"} fontSize={"1.0625rem"} fontWeight={"700"} alignSelf={"flex-start"} ml={'.75rem'}>
         目录
       </Text>
 
-      <Divider mb={"12px"} />
+      <Divider mb={".75rem"} />
       {props.children}
     </Flex>
   );

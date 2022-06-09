@@ -94,7 +94,9 @@ function Header({ onOpen }: { onOpen: () => void }) {
       <Flex width={loginStatus.status ? "150px" : '100px'} justify={"flex-end"}>
         {loginStatus.status ? (
           <Flex justify={"space-between"} width={"200px"}>
-            <Avatar width={"38px"} height={"38px"} src={'https://pic3.zhimg.com/80/v2-e987c60f8776df32c010265d2b81526e_720w.jpg'} />
+            <Avatar onClick={() => {
+              router.push(`/my/${loginStatus.userId}`)
+            }} width={"38px"} height={"38px"} src={'https://pic3.zhimg.com/80/v2-e987c60f8776df32c010265d2b81526e_720w.jpg'} />
             <Button width={"100px"} onClick={() => {
               localStorage.removeItem("token");
               setLoginStatus({

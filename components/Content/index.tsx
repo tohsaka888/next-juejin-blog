@@ -8,6 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { baseUrl } from "config/baseUrl";
 import { ListContext } from "context/Context";
 import { useRouter } from "next/router";
+import useScreenSize from "hooks/useScreenSize";
 const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
 
 const items: MenuItemProps[] = [
@@ -44,6 +45,7 @@ function Content({ tags }: { tags?: string }) {
   const [page, setPage] = useState<number>(2);
   const [currentList, setCurrentList] = useState<ArticleBriefInfo[]>([])
   const router = useRouter()
+  const screenSize = useScreenSize()
   const fetchMoreData = useCallback(async () => {
     const res = await fetch(`${baseUrl}/api${tags ? '/tag/' + tags : '/list'}`, {
       method: "POST",
@@ -86,6 +88,7 @@ function Content({ tags }: { tags?: string }) {
       flex={3}
       bg={colorMode === "light" ? "#fff" : undefined}
       shadow={shadows[colorMode]}
+      minHeight={screenSize.height - 60}
     >
       <AnimatedMenu
         items={items}

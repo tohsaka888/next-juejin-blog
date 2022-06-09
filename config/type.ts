@@ -105,3 +105,8 @@ export type AuthorArticleResponse = {
   list: ArticleBriefInfo[];
   author: string;
 }
+
+export type DeleteResponse = {
+  success: boolean;
+  msg?: string;
+}

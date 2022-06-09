@@ -3,7 +3,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import React from "react";
-import { ArticleInfo, InfoResponse } from "../../config/type";
+import { ArticleInfo, CommentList, CommentResponse, InfoResponse } from "../../config/type";
 import {
   Box,
   useColorMode,
@@ -36,7 +36,9 @@ import Comment from "components/Comment";
 const ArticleDetail: NextPage<{
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
   info: ArticleInfo;
-}> = ({ source, info }) => {
+  id: string;
+  comments: CommentList[]
+}> = ({ source, info, id, comments }) => {
   const { colorMode } = useColorMode();
   return (
     <Box bg={colorMode === "light" ? "#f9f9f9" : undefined} pt={"80px"}>
@@ -117,7 +119,7 @@ const ArticleDetail: NextPage<{
             }}
           />
         </PrismLightTheme>}
-        <Comment />
+        <Comment id={id} comments={comments} />
       </Box>
     </Box>
   );
@@ -146,7 +148,14 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     },
   });
   data.info.content = "";
-  return { props: { source: mdxSource, info: data.info } };
+  const res1 = await fetch(`${baseUrl}/api/comments/list`, {
+    method: "POST",
+    body: JSON.stringify({
+      articleId: query.id,
+    }),
+  });
+  const data1: CommentResponse = await res1.json();
+  return { props: { source: mdxSource, info: data.info, id: query.id, comments: data1.list } };
 };
 
 export default ArticleDetail;

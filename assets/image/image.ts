@@ -1,0 +1,1 @@
+export const avatarUrl = "https://pic3.zhimg.com/80/v2-e987c60f8776df32c010265d2b81526e_720w.jpg";

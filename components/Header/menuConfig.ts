@@ -18,7 +18,7 @@ export const items: MenuItemProps[] = [
     key: "android",
   },
   {
-    label: "iOS",
+    label: "IOS",
     key: "ios",
   },
   {

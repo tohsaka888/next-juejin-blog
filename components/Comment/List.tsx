@@ -2,7 +2,7 @@ import { Avatar, Box, Flex, useColorMode, Text, Divider } from '@chakra-ui/react
 import { shadows } from 'config/theme'
 import { CommentList } from 'config/type'
 import moment from 'moment'
-import React, { useState } from 'react'
+import React from 'react'
 import 'moment/locale/zh-cn'
 
 moment.locale('zh-cn')

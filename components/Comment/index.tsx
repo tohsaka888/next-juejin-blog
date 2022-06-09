@@ -5,7 +5,7 @@ import SendArea from './SendArea'
 
 function Comment() {
   return (
-    <Box>
+    <Box mt={"24px"}>
       <SendArea />
       <List />
     </Box>

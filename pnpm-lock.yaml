@@ -30,6 +30,7 @@ specifiers:
   react-spring: ^9.4.5
   react-spring-menu: ^0.0.2
   rehype-autolink-headings: ^6.1.1
+  rehype-code-titles: ^1.1.0
   rehype-prism-plus: ^1.4.0
   rehype-slug: ^5.0.1
   remark-codesandbox: ^0.10.1
@@ -67,6 +68,7 @@ dependencies:
   react-infinite-scroll-component: 6.1.0_react@18.1.0
   react-spring: 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
   react-spring-menu: 0.0.2_wfhvqiprmys65wyvbjfgd3t6zi
+  rehype-code-titles: 1.1.0
   remark-directive-rehype: 0.4.0
   remark-hint: 1.0.10
   ruler: 1.0.0
@@ -6152,6 +6154,13 @@ packages:
       hast-util-is-element: 2.1.2
       unified: 10.1.2
       unist-util-visit: 4.1.0
+
+  /rehype-code-titles/1.1.0:
+    resolution: {integrity: sha512-muit6KQWNafowXA0HTUeQtUT+UuP0ra34xty1tuF8WsdjcSm++HswgRAFGXH8CAGe8axuGUxg13+I4yFHFnmfQ==}
+    engines: {node: '>=16'}
+    dependencies:
+      unist-util-visit: 4.1.0
+    dev: false
 
   /rehype-parse/8.0.4:
     resolution: {integrity: sha512-MJJKONunHjoTh4kc3dsM1v3C9kGrrxvA3U8PxZlP2SjH8RNUSrb+lF7Y0KVaUDnGH2QZ5vAn7ulkiajM9ifuqg==}

@@ -36,7 +36,7 @@ import Comment from "components/Comment";
 import { BsChatDots, BsHandThumbsUp, BsStar } from "react-icons/bs";
 import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkHint from 'remark-hint'
-
+import codeTitle from 'rehype-code-titles'
 
 const ArticleDetail: NextPage<{
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
@@ -171,6 +171,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
         rehypeAutolinkHeadings,
         slug,
         [toc, { tight: false }],
+        codeTitle
       ],
     },
   });

@@ -29,6 +29,7 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-spring": "^9.4.5",
     "react-spring-menu": "^0.0.2",
+    "rehype-code-titles": "^1.1.0",
     "remark-directive-rehype": "^0.4.0",
     "remark-hint": "^1.0.10",
     "ruler": "^1.0.0",

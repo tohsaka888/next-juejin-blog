@@ -129,3 +129,8 @@ export type CommentResponse = {
   msg?: string;
   list: CommentList[];
 }
+
+export type SignResponse = {
+  success: boolean;
+  msg?: string;
+}

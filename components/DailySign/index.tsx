@@ -1,10 +1,32 @@
-import React from "react";
-import { Box, Flex, useColorMode, Text, Button } from "@chakra-ui/react";
+import React, { useCallback, useContext } from "react";
+import { Box, Flex, useColorMode, Text, Button, useToast } from "@chakra-ui/react";
 import { shadows } from "config/theme";
 import { FcCalendar } from "react-icons/fc";
+import { LoginStatusContext } from "context/Context";
+import { baseUrl } from "config/baseUrl";
+import { SignResponse } from "config/type";
 
 function DailySign() {
   const { colorMode } = useColorMode();
+  const { loginStatus } = useContext(LoginStatusContext)!;
+  const toast = useToast()
+  const sign = useCallback(async () => {
+    const res = await fetch(`${baseUrl}/api/sign/${loginStatus.userId}`);
+    const data: SignResponse = await res.json();
+    if (data.success) {
+      toast({
+        description: data.msg,
+        status: "success",
+        position: "top"
+      });
+    } else {
+      toast({
+        description: data.msg,
+        status: "warning",
+        position: "top"
+      })
+    }
+  }, [loginStatus.userId, toast])
   return (
     <Box
       bg={colorMode === "light" ? "#ffffff" : undefined}
@@ -25,6 +47,7 @@ function DailySign() {
           color={"#1890ff"}
           height={"30px"}
           fontSize={"14px"}
+          onClick={sign}
         >
           去签到
         </Button>

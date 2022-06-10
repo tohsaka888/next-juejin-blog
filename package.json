@@ -32,7 +32,6 @@
     "rehype-code-titles": "^1.1.0",
     "remark-directive-rehype": "^0.4.0",
     "remark-hint": "^1.0.10",
-    "ruler": "^1.0.0",
     "styled-components": "^5.3.5",
     "styled-jsx": "^5.0.2"
   },

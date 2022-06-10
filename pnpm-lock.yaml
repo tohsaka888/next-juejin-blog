@@ -41,7 +41,6 @@ specifiers:
   remark-gfm: ^3.0.1
   remark-hint: ^1.0.10
   remark-typescript: ^0.4.1
-  ruler: ^1.0.0
   styled-components: ^5.3.5
   styled-jsx: ^5.0.2
   typescript: 4.7.3
@@ -71,7 +70,6 @@ dependencies:
   rehype-code-titles: 1.1.0
   remark-directive-rehype: 0.4.0
   remark-hint: 1.0.10
-  ruler: 1.0.0
   styled-components: 5.3.5_ef5jwxihqo6n7gxfmzogljlgcm
   styled-jsx: 5.0.2_react@18.1.0
 
@@ -5755,10 +5753,6 @@ packages:
       find-up: 4.1.0
     dev: false
 
-  /pluck/0.0.3:
-    resolution: {integrity: sha512-7Hh9MyeS+cJMrEbgwVrVpu6z0oZGUs7bLd6nLOchz0/fEMJTVY+N+6fwSoR4FRuxF0u9wmuKJYZ8YwUmMUx0Tg==}
-    dev: false
-
   /popmotion/11.0.3:
     resolution: {integrity: sha512-Y55FLdj3UxkR7Vl3s7Qr4e9m0onSnP8W7d/xQLsoJM40vs6UKHFdygs6SWryasTZYqugMjm3BepCF4CWXDiHgA==}
     dependencies:
@@ -6436,12 +6430,6 @@ packages:
     dependencies:
       glob: 7.2.3
     dev: true
-
-  /ruler/1.0.0:
-    resolution: {integrity: sha512-udFklmco0boDg58sVKBX2oPVaPY4K+IXub/fkdO6C1qHDJQ67ReH4LxRF1TNygvxyZO8/j2fheZtwVU+X8YxQw==}
-    dependencies:
-      pluck: 0.0.3
-    dev: false
 
   /run-async/2.4.1:
     resolution: {integrity: sha512-tvVnVv01b8c1RrA6Ep7JkStj85Guv/YrMcwqYQnwjsAS2cTmmPGBBjAjpCW7RrSodNSoE2/qg9O4bceNvUuDgQ==}

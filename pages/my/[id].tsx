@@ -3,14 +3,21 @@ import ArticleCard from 'components/ArticleCard';
 import { baseUrl } from 'config/baseUrl';
 import { shadows } from 'config/theme';
 import { ArticleBriefInfo, AuthorArticleResponse } from 'config/type';
+import { ListContext } from 'context/Context';
 import useScreenSize from 'hooks/useScreenSize';
 import { GetServerSideProps, NextPage } from 'next';
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 const My: NextPage<{ list: ArticleBriefInfo[], author: string }> = ({ list, author }) => {
   const { colorMode } = useColorMode()
   const [isDelete, setIsDelete] = useState<boolean>(false);
   const screenSize = useScreenSize();
+  const { setList } = useContext(ListContext)!;
+
+  useEffect(() => {
+    setList(list)
+  }, [list, setList])
+
   return (
     <Box width={"50vw"} margin={"80px auto 0px auto"} justifyContent={"space-between"} minHeight={screenSize.height - 80}>
       <Flex shadow={shadows[colorMode]} mb={"16px"} padding={'24px 36px'} align={"center"} width={"50vw"} justifyContent={"space-between"}>
@@ -24,7 +31,7 @@ const My: NextPage<{ list: ArticleBriefInfo[], author: string }> = ({ list, auth
         <Button bg={'#dc1919'} color={"#fff"} _hover={{ bg: '#dc1919', color: '#fff', opacity: 0.5 }} onClick={() => setIsDelete(!isDelete)}>管理文章</Button>
       </Flex>
       <Box shadow={shadows[colorMode]}>
-        <ArticleCard />
+        <ArticleCard isDetele={isDelete} />
       </Box>
     </Box>
   )

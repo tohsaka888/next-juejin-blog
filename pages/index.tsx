@@ -12,7 +12,6 @@ import DailySign from "../components/DailySign/index";
 import Download from "components/Download";
 import { useContext, useEffect } from "react";
 import { ListContext } from "context/Context";
-import useScreenSize from "hooks/useScreenSize";
 
 const Home: NextPage<{ articleList: ArticleBriefInfo[] }> = ({ articleList }) => {
   const { colorMode } = useColorMode();

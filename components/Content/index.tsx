@@ -2,14 +2,13 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Box, useColorMode, Divider, Skeleton, SkeletonText, Flex } from "@chakra-ui/react";
 import { shadows } from "../../config/theme";
 import ArticleCard from "components/ArticleCard";
-import { ArticleBriefInfo, ListResponse, MenuItemProps } from "config/type";
-import dynamic from "next/dynamic";
+import { ListResponse, MenuItemProps } from "config/type";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { baseUrl } from "config/baseUrl";
 import { ListContext } from "context/Context";
 import { useRouter } from "next/router";
 import useScreenSize from "hooks/useScreenSize";
-const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false, loading: () => <Loading /> });
+import AnimatedMenu from "react-spring-menu";
 
 const items: MenuItemProps[] = [
   {
@@ -28,22 +27,21 @@ const items: MenuItemProps[] = [
 
 export function Loading() {
   return (
-    <>
-      {[1, 2, 3, 4, 5, 6, 7, 8].map(item => (
-        <Flex key={item} justify={"space-between"} padding={"16px"}>
-          <SkeletonText mt='8px' noOfLines={4} spacing='4' flex={1} mr={"16px"} />
-          <Skeleton width={"150px"} height={"100px"} />
-        </Flex>
-      ))}
-    </>
+    // <>
+    //   {[1].map(item => (
+    <Flex justify={"space-between"} padding={"16px"}>
+      <SkeletonText mt='8px' noOfLines={4} spacing='4' flex={1} mr={"16px"} />
+      <Skeleton width={"150px"} height={"100px"} />
+    </Flex>
+    //   ))}
+    // </>
   )
 }
 
 function Content({ tags }: { tags?: string }) {
   const { colorMode } = useColorMode();
-  const { setList } = useContext(ListContext)!
+  const { list, setList } = useContext(ListContext)!
   const [page, setPage] = useState<number>(2);
-  const [currentList, setCurrentList] = useState<ArticleBriefInfo[]>([])
   const router = useRouter()
   const screenSize = useScreenSize()
   const fetchMoreData = useCallback(async () => {
@@ -51,13 +49,12 @@ function Content({ tags }: { tags?: string }) {
       method: "POST",
       body: JSON.stringify({
         page: page,
-        limit: 10
+        limit: 6,
       })
     })
     const data: ListResponse = await res.json()
     setList(list => [...list, ...data.list])
-    setCurrentList(data.list)
-    if (data.list.length === 10) {
+    if (data.list.length === 6) {
       setPage(page + 1)
     } else {
       setPage(-1)
@@ -74,21 +71,21 @@ function Content({ tags }: { tags?: string }) {
           method: "POST",
           body: JSON.stringify({
             page: 1,
-            limit: 10
+            limit: 6
           })
         })
         const data = await res.json()
-        setList(data.list)
+        setList([...list, ...data.list])
       }
       fetchData()
     }
-  }, [router, setList, tags])
+  }, [list, router, setList, tags])
   return (
     <Box
       flex={3}
       bg={colorMode === "light" ? "#fff" : undefined}
       shadow={shadows[colorMode]}
-      minHeight={screenSize.height - 60}
+      minH={"960px"}
     >
       <AnimatedMenu
         items={items}
@@ -98,14 +95,20 @@ function Content({ tags }: { tags?: string }) {
         color={colorMode === "light" ? "#000" : "#fff"}
       />
       <Divider />
-      <InfiniteScroll dataLength={currentList.length} next={fetchMoreData}
+
+      <InfiniteScroll
+        dataLength={list.length}
+        next={fetchMoreData}
         endMessage={
           <p style={{ textAlign: 'center', marginBottom: '16px' }}>
             <b>~~到底啦~~</b>
           </p>
-        } hasMore={!(page === -1)} loader={<Loading />}>
-        <ArticleCard authorList={[]} />
+        }
+        hasMore={!(page === -1)}
+        loader={<Loading />}>
+        <ArticleCard />
       </InfiniteScroll>
+
     </Box>
   );
 }

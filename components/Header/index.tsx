@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from "react";
+import React, { useContext } from "react";
 import {
   Avatar,
   Button,
@@ -6,7 +6,6 @@ import {
   IconButton,
   useColorMode,
 } from "@chakra-ui/react";
-import dynamic from "next/dynamic";
 import { items } from "./menuConfig";
 import logo from "../../assets/image/logo.svg";
 import Image from "next/image";
@@ -30,6 +29,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
   const { loginStatus, setLoginStatus } = useContext(LoginStatusContext)!
   const { list, setList } = useContext(ListContext)!;
   const router = useRouter();
+
   return (
     <Flex
       align={"center"}
@@ -58,8 +58,13 @@ function Header({ onOpen }: { onOpen: () => void }) {
         defaultSelectedKeys={["homepage"]}
         color={colorMode === "light" ? "#000" : "#fff"}
         onClick={(e: any) => {
+          if (e.target.innerText !== '首页') {
+            router.push('/' + e.target.innerText);
+
+          } else {
+            router.push('/');
+          }
           setList([])
-          router.push('/' + e.target.innerText);
         }}
       />
 

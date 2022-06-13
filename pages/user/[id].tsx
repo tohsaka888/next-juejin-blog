@@ -2,13 +2,13 @@ import { Avatar, Box, Flex, useColorMode, Text } from '@chakra-ui/react';
 import ArticleCard from 'components/ArticleCard';
 import { baseUrl } from 'config/baseUrl';
 import { shadows } from 'config/theme';
-import { ListResponse, ArticleBriefInfo, AuthorArticleResponse } from 'config/type';
-import { ListContext } from 'context/Context';
+import { ArticleBriefInfo, AuthorArticleResponse } from 'config/type';
 import { GetServerSideProps, NextPage } from 'next';
 import React from 'react'
 
 const User: NextPage<{ list: ArticleBriefInfo[], author: string }> = ({ list, author }) => {
   const { colorMode } = useColorMode()
+
   return (
     <Box width={"50vw"} margin={"80px auto 0px auto"}>
       <Flex shadow={shadows[colorMode]} mb={"16px"} padding={'24px 36px'} align={"center"}>

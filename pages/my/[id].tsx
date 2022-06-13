@@ -24,7 +24,7 @@ const My: NextPage<{ list: ArticleBriefInfo[], author: string }> = ({ list, auth
         <Button bg={'#dc1919'} color={"#fff"} _hover={{ bg: '#dc1919', color: '#fff', opacity: 0.5 }} onClick={() => setIsDelete(!isDelete)}>管理文章</Button>
       </Flex>
       <Box shadow={shadows[colorMode]}>
-        <ArticleCard authorList={list} isDetele={isDelete} />
+        <ArticleCard />
       </Box>
     </Box>
   )

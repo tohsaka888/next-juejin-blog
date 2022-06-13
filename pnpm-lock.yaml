@@ -9,6 +9,7 @@ specifiers:
   '@types/nodemailer': ^6.4.4
   '@types/react': 18.0.11
   '@types/react-dom': 18.0.5
+  '@types/react-infinite-scroll-component': ^5.0.0
   '@types/styled-components': ^5.1.25
   '@uiw/react-markdown-preview': ^4.0.11
   '@uiw/react-md-editor': ^3.14.1
@@ -28,7 +29,7 @@ specifiers:
   react-icons: ^4.4.0
   react-infinite-scroll-component: ^6.1.0
   react-spring: ^9.4.5
-  react-spring-menu: ^0.0.3
+  react-spring-menu: ^0.0.5
   rehype-autolink-headings: ^6.1.1
   rehype-code-titles: ^1.1.0
   rehype-prism-plus: ^1.4.0
@@ -65,7 +66,7 @@ dependencies:
   react-icons: 4.4.0_react@18.1.0
   react-infinite-scroll-component: 6.1.0_react@18.1.0
   react-spring: 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
-  react-spring-menu: 0.0.3_wfhvqiprmys65wyvbjfgd3t6zi
+  react-spring-menu: 0.0.5_wfhvqiprmys65wyvbjfgd3t6zi
   rehype-code-titles: 1.1.0
   remark-directive-rehype: 0.4.0
   remark-hint: 1.0.10
@@ -77,6 +78,7 @@ devDependencies:
   '@types/nodemailer': 6.4.4
   '@types/react': 18.0.11
   '@types/react-dom': 18.0.5
+  '@types/react-infinite-scroll-component': 5.0.0_react@18.1.0
   eslint: 8.17.0
   eslint-config-next: 12.1.6_qwqcuvhue6diaz4jqbkm5dp3pa
   rehype-autolink-headings: 6.1.1
@@ -1792,6 +1794,15 @@ packages:
     resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
     dependencies:
       '@types/react': 18.0.11
+    dev: true
+
+  /@types/react-infinite-scroll-component/5.0.0_react@18.1.0:
+    resolution: {integrity: sha512-1DrmAOFfiy6nchA/KiXCAEzXxG4VHsEGJGlRyMZYy8A9WGfr0fAVe+MXep+VkjIPnNPf06qDbJGSNiPzt67wJg==}
+    deprecated: This is a stub types definition. react-infinite-scroll-component provides its own type definitions, so you do not need this installed.
+    dependencies:
+      react-infinite-scroll-component: 6.1.0_react@18.1.0
+    transitivePeerDependencies:
+      - react
     dev: true
 
   /@types/react/18.0.11:
@@ -5932,7 +5943,6 @@ packages:
     dependencies:
       react: 18.1.0
       throttle-debounce: 2.3.0
-    dev: false
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -6003,8 +6013,8 @@ packages:
       use-sidecar: 1.1.2_xzblsqi5foayvoljr2geupzxea
     dev: false
 
-  /react-spring-menu/0.0.3_wfhvqiprmys65wyvbjfgd3t6zi:
-    resolution: {integrity: sha512-EOaEB46L3QCyl1o05j1rp3uBkDgW7OzZxdNtenX9V0iumcozC8mpyzjmJZAgI3IgPRZD5Hz3kPOA4Ly28jXQHA==}
+  /react-spring-menu/0.0.5_wfhvqiprmys65wyvbjfgd3t6zi:
+    resolution: {integrity: sha512-tY01ULOW0HYPbHar0AgvXqvS4mobC8omffCBpV+mXkzmk8MkbIqREmgk45eu4oJGNIVREBpUZ3HTo7J1EVOtmg==}
     peerDependencies:
       react: ^18.1.0
       react-dom: ^18.1.0
@@ -6861,7 +6871,6 @@ packages:
   /throttle-debounce/2.3.0:
     resolution: {integrity: sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==}
     engines: {node: '>=8'}
-    dev: false
 
   /through/2.3.8:
     resolution: {integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=}

@@ -8,14 +8,20 @@ import Sider from "../components/Sider";
 import { shadows } from "../config/theme";
 import styles from "../styles/Home.module.css";
 import { ListResponse, ArticleBriefInfo } from "../config/type";
-import { ListContext } from "context/Context";
 import DailySign from "../components/DailySign/index";
 import Download from "components/Download";
-import { useState } from "react";
+import { useContext, useEffect } from "react";
+import { ListContext } from "context/Context";
+import useScreenSize from "hooks/useScreenSize";
 
 const Home: NextPage<{ articleList: ArticleBriefInfo[] }> = ({ articleList }) => {
   const { colorMode } = useColorMode();
-  const [list, setList] = useState<ArticleBriefInfo[]>(articleList)
+  const { list, setList } = useContext(ListContext)!;
+  const screenSize = useScreenSize();
+
+  useEffect(() => {
+    setList(articleList)
+  }, [articleList, setList])
 
   return (
     <div className={styles.container}>
@@ -32,10 +38,10 @@ const Home: NextPage<{ articleList: ArticleBriefInfo[] }> = ({ articleList }) =>
           bg={colorMode === "light" ? "#f9f9f9" : undefined}
           padding={"16px 18vw"}
           mt={"60px"}
+          minH={screenSize.height - 60}
         >
-          <ListContext.Provider value={{ list, setList }}>
-            <Content />
-          </ListContext.Provider>
+
+          <Content />
           <Sider>
             <DailySign />
             <Download />
@@ -67,7 +73,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     method: "POST",
     body: JSON.stringify({
       page: 1,
-      limit: 10,
+      limit: 6,
     })
   });
   const data: ListResponse = await res.json();

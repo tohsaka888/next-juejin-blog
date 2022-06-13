@@ -19,7 +19,7 @@ const User: NextPage<{ list: ArticleBriefInfo[], author: string }> = ({ list, au
         </Box>
       </Flex>
       <Box shadow={shadows[colorMode]}>
-        <ArticleCard authorList={list} />
+        <ArticleCard />
       </Box>
     </Box>
   )

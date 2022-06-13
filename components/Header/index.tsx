@@ -46,7 +46,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
     >
       <Image
         src={logo}
-        style={{ width: "107px", height: "22px", cursor: "pointer" }}
+        style={{ width: "8vw", height: "18px", cursor: "pointer" }}
         alt="logo"
         onClick={() => {
           router.push("/");

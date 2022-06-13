@@ -28,7 +28,7 @@ specifiers:
   react-icons: ^4.4.0
   react-infinite-scroll-component: ^6.1.0
   react-spring: ^9.4.5
-  react-spring-menu: ^0.0.2
+  react-spring-menu: ^0.0.3
   rehype-autolink-headings: ^6.1.1
   rehype-code-titles: ^1.1.0
   rehype-prism-plus: ^1.4.0
@@ -42,7 +42,6 @@ specifiers:
   remark-hint: ^1.0.10
   remark-typescript: ^0.4.1
   styled-components: ^5.3.5
-  styled-jsx: ^5.0.2
   typescript: 4.7.3
 
 dependencies:
@@ -66,12 +65,11 @@ dependencies:
   react-icons: 4.4.0_react@18.1.0
   react-infinite-scroll-component: 6.1.0_react@18.1.0
   react-spring: 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
-  react-spring-menu: 0.0.2_wfhvqiprmys65wyvbjfgd3t6zi
+  react-spring-menu: 0.0.3_wfhvqiprmys65wyvbjfgd3t6zi
   rehype-code-titles: 1.1.0
   remark-directive-rehype: 0.4.0
   remark-hint: 1.0.10
   styled-components: 5.3.5_ef5jwxihqo6n7gxfmzogljlgcm
-  styled-jsx: 5.0.2_react@18.1.0
 
 devDependencies:
   '@jsdevtools/rehype-toc': 3.0.2
@@ -6005,8 +6003,8 @@ packages:
       use-sidecar: 1.1.2_xzblsqi5foayvoljr2geupzxea
     dev: false
 
-  /react-spring-menu/0.0.2_wfhvqiprmys65wyvbjfgd3t6zi:
-    resolution: {integrity: sha512-eZSdf718QcAtADqhmpUzHsbWaOQsnhulWscaNqFS7ArHcE/mdP6acAU3jjGwRSdP/kus5UYPo5DHB9tCMAXgeg==}
+  /react-spring-menu/0.0.3_wfhvqiprmys65wyvbjfgd3t6zi:
+    resolution: {integrity: sha512-EOaEB46L3QCyl1o05j1rp3uBkDgW7OzZxdNtenX9V0iumcozC8mpyzjmJZAgI3IgPRZD5Hz3kPOA4Ly28jXQHA==}
     peerDependencies:
       react: ^18.1.0
       react-dom: ^18.1.0
@@ -6016,12 +6014,10 @@ packages:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       react-spring: 9.4.5_ef5jwxihqo6n7gxfmzogljlgcm
-      styled-components: 5.3.5_ef5jwxihqo6n7gxfmzogljlgcm
       typescript: 4.7.3
     transitivePeerDependencies:
       - '@react-three/fiber'
       - konva
-      - react-is
       - react-konva
       - react-native
       - react-zdog

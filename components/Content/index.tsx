@@ -6,9 +6,8 @@ import { ListResponse, MenuItemProps } from "config/type";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { baseUrl } from "config/baseUrl";
 import { ListContext } from "context/Context";
-import { useRouter } from "next/router";
-import useScreenSize from "hooks/useScreenSize";
 import AnimatedMenu from "react-spring-menu";
+import useScreenSize from "hooks/useScreenSize";
 
 const items: MenuItemProps[] = [
   {
@@ -42,8 +41,12 @@ function Content({ tags }: { tags?: string }) {
   const { colorMode } = useColorMode();
   const { list, setList } = useContext(ListContext)!
   const [page, setPage] = useState<number>(2);
-  const router = useRouter()
-  const screenSize = useScreenSize()
+  const { height } = useScreenSize()
+  useEffect(() => {
+    return () => {
+      setPage(2)
+    }
+  }, [])
   const fetchMoreData = useCallback(async () => {
     const res = await fetch(`${baseUrl}/api${tags ? '/tag/' + tags : '/list'}`, {
       method: "POST",
@@ -61,31 +64,12 @@ function Content({ tags }: { tags?: string }) {
     }
   }, [page, setList, tags])
 
-  useEffect(() => {
-    if (tags === '首页') {
-      router.push('/')
-    }
-    if (tags) {
-      const fetchData = async () => {
-        const res = await fetch(`${baseUrl}/api/tag/${tags}`, {
-          method: "POST",
-          body: JSON.stringify({
-            page: 1,
-            limit: 6
-          })
-        })
-        const data = await res.json()
-        setList([...list, ...data.list])
-      }
-      fetchData()
-    }
-  }, [list, router, setList, tags])
   return (
     <Box
       flex={3}
       bg={colorMode === "light" ? "#fff" : undefined}
       shadow={shadows[colorMode]}
-      minH={"960px"}
+      minH={'960px'}
     >
       <AnimatedMenu
         items={items}
@@ -96,18 +80,24 @@ function Content({ tags }: { tags?: string }) {
       />
       <Divider />
 
-      <InfiniteScroll
-        dataLength={list.length}
-        next={fetchMoreData}
-        endMessage={
-          <p style={{ textAlign: 'center', marginBottom: '16px' }}>
-            <b>~~到底啦~~</b>
-          </p>
-        }
-        hasMore={!(page === -1)}
-        loader={<Loading />}>
-        <ArticleCard />
-      </InfiniteScroll>
+      {list.length > 5 ? (
+        <InfiniteScroll
+          dataLength={list.length}
+          next={fetchMoreData}
+          endMessage={
+            <p style={{ textAlign: 'center', marginBottom: '16px' }}>
+              <b>~~到底啦~~</b>
+            </p>
+          }
+          hasMore={!(page === -1)}
+          loader={<Loading />}>
+          <ArticleCard />
+        </InfiniteScroll>
+      ) : <ArticleCard />}
+
+      {list.length === 0 && (
+        <Loading />
+      )}
 
     </Box>
   );

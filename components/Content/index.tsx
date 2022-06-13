@@ -9,7 +9,7 @@ import { baseUrl } from "config/baseUrl";
 import { ListContext } from "context/Context";
 import { useRouter } from "next/router";
 import useScreenSize from "hooks/useScreenSize";
-const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
+const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false, loading: () => <Loading /> });
 
 const items: MenuItemProps[] = [
   {
@@ -29,7 +29,7 @@ const items: MenuItemProps[] = [
 export function Loading() {
   return (
     <>
-      {[1, 2, 3].map(item => (
+      {[1, 2, 3, 4, 5, 6, 7, 8].map(item => (
         <Flex key={item} justify={"space-between"} padding={"16px"}>
           <SkeletonText mt='8px' noOfLines={4} spacing='4' flex={1} mr={"16px"} />
           <Skeleton width={"150px"} height={"100px"} />

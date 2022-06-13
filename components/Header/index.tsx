@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Suspense, useContext } from "react";
 import {
   Avatar,
   Button,
@@ -21,8 +21,11 @@ import { shadows } from "../../config/theme";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { LoginStatusContext } from "context/Context";
+import Loading from "./Loading";
+// import Loading from "./Loading";
+// import AnimatedMenu from "react-spring-menu";
 
-const AnimatedMenu = dynamic(import("react-spring-menu"), { ssr: false });
+const AnimatedMenu = dynamic(() => import("react-spring-menu"), { ssr: false, loading: () => <Loading /> });
 
 function Header({ onOpen }: { onOpen: () => void }) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -49,6 +52,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
           router.push("/");
         }}
       />
+
       <AnimatedMenu
         style={{ height: "60px" }}
         items={items}
@@ -58,6 +62,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
           router.push('/' + e.target.innerText);
         }}
       />
+
       <Search onOpen={onOpen} />
       <Flex>
         <IconButton
@@ -91,7 +96,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
           />
         </Link>
       </Flex>
-      <Flex width={loginStatus.status ? "150px" : '100px'} justify={"flex-end"}>
+      <Flex width={'150px'} justify={"flex-end"}>
         {loginStatus.status ? (
           <Flex justify={"space-between"} width={"200px"} cursor={"pointer"}>
             <Avatar onClick={() => {

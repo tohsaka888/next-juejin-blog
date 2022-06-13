@@ -11,11 +11,15 @@ import { ListResponse, ArticleBriefInfo } from "../config/type";
 import { ListContext } from "context/Context";
 import DailySign from "../components/DailySign/index";
 import Download from "components/Download";
-import { useState } from "react";
+import { useContext, useEffect } from "react";
 
 const Home: NextPage<{ articleList: ArticleBriefInfo[], tags: string }> = ({ articleList, tags }) => {
   const { colorMode } = useColorMode();
-  const [list, setList] = useState<ArticleBriefInfo[]>(articleList)
+  const { setList } = useContext(ListContext)!;
+
+  useEffect(() => {
+    setList(articleList)
+  }, [articleList, setList])
 
   return (
     <div className={styles.container}>
@@ -33,9 +37,9 @@ const Home: NextPage<{ articleList: ArticleBriefInfo[], tags: string }> = ({ art
           padding={"16px 18vw"}
           mt={"60px"}
         >
-          <ListContext.Provider value={{ list, setList }}>
-            <Content tags={tags} />
-          </ListContext.Provider>
+
+          <Content tags={tags} />
+
           <Sider>
             <DailySign />
             <Download />
@@ -63,11 +67,11 @@ const Home: NextPage<{ articleList: ArticleBriefInfo[], tags: string }> = ({ art
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`${baseUrl}/api/list`, {
+  const res = await fetch(`${baseUrl}/api/tag/${context.query.tags}`, {
     method: "POST",
     body: JSON.stringify({
       page: 1,
-      limit: 10,
+      limit: 6,
     })
   });
   const data: ListResponse = await res.json();

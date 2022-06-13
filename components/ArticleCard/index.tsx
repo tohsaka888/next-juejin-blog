@@ -7,22 +7,22 @@ import moment from "moment";
 import "moment/locale/zh-cn";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { ArticleBriefInfo, AuthorArticleResponse, DeleteResponse } from "config/type";
+import { AuthorArticleResponse, DeleteResponse } from "config/type";
 import { baseUrl } from "config/baseUrl";
 
 moment.locale("zh-cn");
 
-function ArticleCard({ authorList = [], isDetele = false, delay }: { authorList: ArticleBriefInfo[], isDetele?: boolean, delay?: number }) {
+function ArticleCard({ isDetele = false, delay }: { isDetele?: boolean, delay?: number }) {
   const route = useRouter();
-  const props = useContext(ListContext);
+  const { list, setList } = useContext(ListContext)!;
   const [id, setId] = useState<string | number>("")
   const { loginStatus } = useContext(LoginStatusContext)!;
   const [deleted, setDeleted] = useState<boolean>(false);
   const toast = useToast();
 
-  const trail = useTrail(deleted ? props?.list.length || 0 : (authorList.length || props?.list.length || 0), {
-    from: { opacity: 0, transform: "translate3d(0,20px,0)" },
-    to: { opacity: 1, transform: "translate3d(0,0px,0)" },
+  const trail = useTrail(list.length, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
     config: config.gentle,
   });
 
@@ -31,15 +31,15 @@ function ArticleCard({ authorList = [], isDetele = false, delay }: { authorList:
   const deleteStyle = useSpring({
     display: isDetele ? "block" : "none",
     opacity: isDetele ? 1 : 0,
-    config: config.gentle,
+    config: config.wobbly,
     delay: delay || 0
   })
 
   const getList = useCallback(async () => {
     const res = await fetch(`${baseUrl}/api/user/${loginStatus.userId}`);
     const data: AuthorArticleResponse = await res.json();
-    props?.setList(data.list);
-  }, [loginStatus.userId, props])
+    setList(data.list);
+  }, [loginStatus.userId, setList])
 
   const handleDelete = useCallback(async () => {
     const res = await fetch(`${baseUrl}/api/post/delete/${id}`)
@@ -64,10 +64,7 @@ function ArticleCard({ authorList = [], isDetele = false, delay }: { authorList:
   return (
     <>
       {trail.map((style, index) => {
-        let item = authorList[index] || props?.list[index];
-        if (deleted && list) {
-          item = props?.list[index] as ArticleBriefInfo;
-        }
+        let item = list[index];
         return (
           <Flex key={item.id} alignItems={"center"} padding={"8px 16px"} justify={"center"}>
             <a.div style={{ ...deleteStyle }}>

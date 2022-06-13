@@ -17,7 +17,6 @@ function ArticleCard({ isDetele = false, delay }: { isDetele?: boolean, delay?: 
   const { list, setList } = useContext(ListContext)!;
   const [id, setId] = useState<string | number>("")
   const { loginStatus } = useContext(LoginStatusContext)!;
-  const [deleted, setDeleted] = useState<boolean>(false);
   const toast = useToast();
 
   const trail = useTrail(list.length, {
@@ -58,8 +57,8 @@ function ArticleCard({ isDetele = false, delay }: { isDetele?: boolean, delay?: 
       })
     }
     onClose()
-    location.reload()
-  }, [id, onClose, toast])
+    getList()
+  }, [getList, id, onClose, toast])
 
   return (
     <>

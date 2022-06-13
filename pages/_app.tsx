@@ -5,8 +5,9 @@ import Header from "components/Header";
 import LoginModal from '../components/LoginModal/index';
 import { LoginStatusContext } from "context/Context";
 import { useEffect, useState } from "react";
-import { LoginStatus, LoginStatusResponse } from "config/type";
+import { ArticleBriefInfo, LoginStatus, LoginStatusResponse } from "config/type";
 import { baseUrl } from "config/baseUrl";
+import { ListContext } from "context/Context";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const props = useDisclosure()
@@ -15,6 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     username: "",
     userId: ''
   });
+  const [list, setList] = useState<ArticleBriefInfo[]>([])
 
   useEffect(() => {
     const getLoginStatus = async () => {
@@ -45,9 +47,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <LoginStatusContext.Provider value={{ loginStatus, setLoginStatus }}>
-        <Header onOpen={props.onOpen} />
-        <LoginModal {...props} />
-        <Component {...pageProps} />
+        <ListContext.Provider value={{ list, setList }}>
+          <Header onOpen={props.onOpen} />
+          <LoginModal {...props} />
+          <Component {...pageProps} />
+        </ListContext.Provider>
       </LoginStatusContext.Provider>
     </ChakraProvider>
   );

@@ -16,8 +16,7 @@ import useScreenSize from "hooks/useScreenSize";
 
 const Home: NextPage<{ articleList: ArticleBriefInfo[] }> = ({ articleList }) => {
   const { colorMode } = useColorMode();
-  const { list, setList } = useContext(ListContext)!;
-  const screenSize = useScreenSize();
+  const { setList } = useContext(ListContext)!;
 
   useEffect(() => {
     setList(articleList)
@@ -34,11 +33,9 @@ const Home: NextPage<{ articleList: ArticleBriefInfo[] }> = ({ articleList }) =>
       <main>
         <Flex
           width={"100%"}
-          height={"100%"}
           bg={colorMode === "light" ? "#f9f9f9" : undefined}
           padding={"16px 18vw"}
           mt={"60px"}
-          minH={screenSize.height - 60}
         >
 
           <Content />

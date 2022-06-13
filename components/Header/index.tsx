@@ -20,16 +20,15 @@ import {
 import { shadows } from "../../config/theme";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { LoginStatusContext } from "context/Context";
+import { ListContext, LoginStatusContext } from "context/Context";
 import Loading from "./Loading";
-// import Loading from "./Loading";
-// import AnimatedMenu from "react-spring-menu";
-
-const AnimatedMenu = dynamic(() => import("react-spring-menu"), { ssr: false, loading: () => <Loading /> });
+import AnimatedMenu from "react-spring-menu";
+// const AnimatedMenu = dynamic(() => import("react-spring-menu"), { ssr: false, loading: () => <Loading /> });
 
 function Header({ onOpen }: { onOpen: () => void }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const { loginStatus, setLoginStatus } = useContext(LoginStatusContext)!
+  const { list, setList } = useContext(ListContext)!;
   const router = useRouter();
   return (
     <Flex
@@ -59,6 +58,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
         defaultSelectedKeys={["homepage"]}
         color={colorMode === "light" ? "#000" : "#fff"}
         onClick={(e: any) => {
+          setList([])
           router.push('/' + e.target.innerText);
         }}
       />

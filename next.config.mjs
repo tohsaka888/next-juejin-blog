@@ -9,7 +9,7 @@ const nextConfig = {
       "p3-juejin.byteimg.com",
       "p6-juejin.byteimg.com",
       "s1.aigei.com",
-      "s1.ax1x.com"
+      "s1.ax1x.com",
     ],
   },
   compiler: {
@@ -17,6 +17,9 @@ const nextConfig = {
     styledComponents: true,
   },
   pageExtensions: ["js", "jsx", "ts", "tsx"],
+  experimental: {
+    runtime: "nodejs",
+  },
 };
 
 export default removeImport()(nextConfig);

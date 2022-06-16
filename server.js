@@ -15,7 +15,7 @@ var options = {
 
 app.prepare().then(() => {
   const server = https.createServer(options, (req, res) => {
-    handle(req, res)
+    res.write("hello,world");
   });
   server.listen(port, (err) => {
     if (err) throw err;

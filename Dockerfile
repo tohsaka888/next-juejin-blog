@@ -33,12 +33,13 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/2_react-animation.cloud.key ./
 COPY --from=builder /app/1_react-animation.cloud_bundle.crt ./
 COPY --from=builder /app/server.js ./
+COPY --from=builder /app/pnpm-lock.yaml ./
 
 USER nextjs
 
-EXPOSE 443
+EXPOSE 3000
 
-ENV PORT 443
+ENV PORT 3000
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry

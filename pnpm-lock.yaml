@@ -11,7 +11,7 @@ specifiers:
   '@types/react-dom': 18.0.5
   '@types/react-infinite-scroll-component': 5.0.0
   '@types/styled-components': 5.1.25
-  '@uiw/react-markdown-preview': 4.0.17
+  '@uiw/react-markdown-preview': 4.0.18
   '@uiw/react-md-editor': 3.14.4
   eslint: 8.18.0
   eslint-config-next: 12.1.6
@@ -51,7 +51,7 @@ dependencies:
   '@emotion/react': 11.9.3_luyos4mouogwq6z3wafb3re4ce
   '@emotion/styled': 11.9.3_mtgmvqaicd2yfw2b4v4o2ssbiu
   '@types/styled-components': 5.1.25
-  '@uiw/react-markdown-preview': 4.0.17_twyhzqqpkwvvgrmyeapdo6i4my
+  '@uiw/react-markdown-preview': 4.0.18_twyhzqqpkwvvgrmyeapdo6i4my
   '@uiw/react-md-editor': 3.14.4_twyhzqqpkwvvgrmyeapdo6i4my
   framer-motion: 6.3.11_biqbaboplfbrettd7655fr4n2y
   jsonwebtoken: 8.5.1
@@ -1912,8 +1912,8 @@ packages:
     resolution: {integrity: sha512-3tt7FVSbjtBCNBhffy7k26rpnEmk8GQj9QkTGZBIfpHU7mG3Buryt69u6xooYM7/gmv7GIqD4QxxIauIp2HHKg==}
     dev: false
 
-  /@uiw/react-markdown-preview/4.0.17_twyhzqqpkwvvgrmyeapdo6i4my:
-    resolution: {integrity: sha512-P0R5urc+YOMyVHdseS2vD3+yl8KvtAjLTNm/Yez/KeFzUSCOJey4EI15wIPikNm+PzaMMFpj9c1rQLHPLCg1LQ==}
+  /@uiw/react-markdown-preview/4.0.18_twyhzqqpkwvvgrmyeapdo6i4my:
+    resolution: {integrity: sha512-mS8g4292FWoQlQTqnPxIVLe3FbjLIrksYpOfpNz86xFGyPDl8sLWMXZddZ3SxbR5/lxyDRW5/8xqnmHHpFpBUg==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     peerDependencies:
       react: '>=16.8.0'
@@ -1926,6 +1926,7 @@ packages:
       react-markdown: 8.0.3_luyos4mouogwq6z3wafb3re4ce
       rehype-attr: 2.0.8
       rehype-autolink-headings: 6.1.1
+      rehype-ignore: 1.0.1
       rehype-prism-plus: 1.4.1
       rehype-raw: 6.1.1
       rehype-rewrite: 3.0.6
@@ -1943,7 +1944,7 @@ packages:
       react-dom: '>=16.8.0'
     dependencies:
       '@babel/runtime': 7.18.3
-      '@uiw/react-markdown-preview': 4.0.17_twyhzqqpkwvvgrmyeapdo6i4my
+      '@uiw/react-markdown-preview': 4.0.18_twyhzqqpkwvvgrmyeapdo6i4my
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       rehype: 12.0.1
@@ -6255,6 +6256,15 @@ packages:
     resolution: {integrity: sha512-muit6KQWNafowXA0HTUeQtUT+UuP0ra34xty1tuF8WsdjcSm++HswgRAFGXH8CAGe8axuGUxg13+I4yFHFnmfQ==}
     engines: {node: '>=16'}
     dependencies:
+      unist-util-visit: 4.1.0
+    dev: false
+
+  /rehype-ignore/1.0.1:
+    resolution: {integrity: sha512-NTio4u/QWk3wLargxk70nntVPR7yfJR66ISCJAYje1iZqKiedkNKkMfATFwXW0yynqoFbT1w+R6Xs0GtXIAjDA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    dependencies:
+      hast-util-select: 5.0.2
+      unified: 10.1.2
       unist-util-visit: 4.1.0
     dev: false
 

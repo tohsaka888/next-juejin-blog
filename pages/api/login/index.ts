@@ -19,7 +19,6 @@ export default async function handler(
     if (body.t === 2) {
       const authcode = await collection.findOne({ phone: body.phone })
       const user = await userCollection.findOne({ phone: body.phone })
-      console.log(authcode.code, body.code)
       if (authcode.code === body.code) {
         let result = null
         if (!user) {

@@ -313,7 +313,8 @@ const EmailPanel = ({
         method: 'POST',
         body: JSON.stringify({
           phone: email,
-        })
+        }),
+        headers: { "Content-Type": "application/json;charset=utf-8" }
       })
       const data = await res.json()
       if (data.success) {
@@ -348,7 +349,7 @@ const EmailPanel = ({
         body: JSON.stringify({
           phone: email,
           code,
-          t: 1
+          t: 2
         })
       });
       data = await res.json();

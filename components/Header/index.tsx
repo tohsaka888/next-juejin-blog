@@ -69,6 +69,9 @@ function Header({ onOpen }: { onOpen: () => void }) {
       />
 
       <Search onOpen={onOpen} />
+      <Button>
+        <a href="https://covid19-analyse-system.vercel.app/">疫情服务平台</a>
+      </Button>
       <Flex>
         <IconButton
           bg={"transparent"}

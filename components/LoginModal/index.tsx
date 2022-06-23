@@ -17,7 +17,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { baseUrl } from "config/baseUrl";
+import { baseUrl, commonUrl } from "config/baseUrl";
 import { LoginResponse, ModalProps, RegisterResponse } from "config/type";
 import { LoginStatusContext } from "context/Context";
 import Image from "next/image";
@@ -309,7 +309,12 @@ const EmailPanel = ({
         })
       }
     } else {
-      const res = await fetch(`${baseUrl}`)
+      const res = await fetch(`${commonUrl}/acc/g-msg-code`, {
+        method: 'POST',
+        body: JSON.stringify({
+          phone: email,
+        })
+      })
       const data = await res.json()
       if (data.success) {
         toast({

@@ -26,7 +26,6 @@ export default async function handler(
       height: 38
     })
   }
-  console.log(result)
 
   res.status(200).json({ ...result });
 }

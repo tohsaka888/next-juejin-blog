@@ -32,7 +32,7 @@
     "remark-directive-rehype": "0.4.0",
     "remark-hint": "1.0.10",
     "styled-components": "5.3.5",
-    "svg-captcha": "^1.4.0"
+    "svg-captcha": "1.4.0"
   },
   "devDependencies": {
     "@jsdevtools/rehype-toc": "3.0.2",

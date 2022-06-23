@@ -15,7 +15,6 @@ export default async function handler(
     const db = await connectDB();
     const collection = db.collection("AuthCode")
     const userCollection = db.collection("user")
-    console.log(body.t)
     if (body.t === 2) {
       const authcode = await collection.findOne({ phone: body.phone })
       const user = await userCollection.findOne({ phone: body.phone })
@@ -24,7 +23,6 @@ export default async function handler(
         if (!user) {
           result = await userCollection.insertOne({ phone: body.phone, token: '' })
         }
-        console.log(user)
         const token = jwt.sign({ username: user.username ? user.username : body.phone, userId: result?.insertedId || user._id }, 'shhhhh');
         await userCollection.updateOne({ phone: body.phone }, { $set: { token: token } })
         res.send({ success: true, token: token, needRegister: !user.username, username: !user.username ? '' : user.username, userId: result?.insertedId });

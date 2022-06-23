@@ -22,6 +22,7 @@ import Link from "next/link";
 import { ListContext, LoginStatusContext } from "context/Context";
 import Loading from "./Loading";
 import AnimatedMenu from "react-spring-menu";
+import { commonUrl } from "config/baseUrl";
 // const AnimatedMenu = dynamic(() => import("react-spring-menu"), { ssr: false, loading: () => <Loading /> });
 
 function Header({ onOpen }: { onOpen: () => void }) {
@@ -78,6 +79,7 @@ function Header({ onOpen }: { onOpen: () => void }) {
           icon={<BsFillBellFill size="20" />}
           aria-label={""}
           mr={"8px"}
+          onClick={() => window.location.href = `${commonUrl}/oc/alipay`}
         />
         <IconButton
           onClick={toggleColorMode}

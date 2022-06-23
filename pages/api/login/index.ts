@@ -24,9 +24,10 @@ export default async function handler(
         if (!user) {
           result = await userCollection.insertOne({ phone: body.phone, token: '' })
         }
-        const token = jwt.sign({ username: user ? user.username : body.phone, userId: result?.insertedId || user._id }, 'shhhhh');
+        console.log(user)
+        const token = jwt.sign({ username: user.username ? user.username : body.phone, userId: result?.insertedId || user._id }, 'shhhhh');
         await userCollection.updateOne({ phone: body.phone }, { $set: { token: token } })
-        res.send({ success: true, token: token, needRegister: !user, username: !user ? '' : user.username, userId: result?.insertedId });
+        res.send({ success: true, token: token, needRegister: !user.username, username: !user.username ? '' : user.username, userId: result?.insertedId });
       } else {
         res.send({ success: false, msg: '验证码错误', token: '', username: '', userId: '' });
       }
@@ -68,9 +69,9 @@ export default async function handler(
         if (!user) {
           result = await userCollection.insertOne({ email: body.email, token: '' })
         }
-        const token = jwt.sign({ username: user ? user.username : body.email, userId: result?.insertedId || user._id }, 'shhhhh');
+        const token = jwt.sign({ username: user.username ? user.username : body.email, userId: result?.insertedId || user._id }, 'shhhhh');
         await userCollection.updateOne({ email: body.email }, { $set: { token: token } })
-        res.send({ success: true, token: token, needRegister: !user, username: !user ? '' : user.username, userId: result?.insertedId });
+        res.send({ success: true, token: token, needRegister: !user.username, username: !user.username ? '' : user.username, userId: result?.insertedId });
       } else {
         res.send({ success: false, msg: '验证码错误', token: '', username: '', userId: '' });
       }

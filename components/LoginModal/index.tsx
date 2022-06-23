@@ -17,7 +17,7 @@ import {
   Alert,
   AlertIcon,
 } from "@chakra-ui/react";
-import { baseUrl } from "config/baseUrl";
+import { baseUrl, commonUrl } from "config/baseUrl";
 import { LoginResponse, ModalProps, RegisterResponse } from "config/type";
 import { LoginStatusContext } from "context/Context";
 import Image from "next/image";
@@ -32,6 +32,7 @@ import React, {
 import inviteLogin from "../../assets/image/invite-login.svg";
 import password from "../../assets/image/password.svg";
 import pendingLogin from "../../assets/image/pending-login.svg";
+import { CaptchaObj } from 'svg-captcha';
 
 type ACTION = { type: "pending" } | { type: "invite" } | { type: "password" };
 
@@ -48,8 +49,23 @@ function LoginPanel({
 }) {
   const [username, setUsername] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const [graphCode, setGraphCode] = useState<CaptchaObj>({
+    data: '',
+    text: ''
+  })
   const { setLoginStatus } = useContext(LoginStatusContext)!;
+  const [code, setCode] = useState<string>()
   const toast = useToast()
+
+  const getGraphCode = useCallback(async () => {
+    const res = await fetch(`${baseUrl}/api/graph-code`)
+    const data: CaptchaObj = await res.json()
+    setGraphCode(data)
+  }, [])
+
+  useEffect(() => {
+    getGraphCode()
+  }, [getGraphCode])
 
   const login = useCallback(async () => {
     const res = await fetch(`${baseUrl}/api/login`, {
@@ -104,7 +120,12 @@ function LoginPanel({
           setPassword(e.target.value)
         }}
       />
-      <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"} onClick={login}>
+      {/* 图形验证码校验 */}
+      <Flex align={"center"} mt={'16px'}>
+        <Input placeContent={"请输入验证码"} isInvalid={code !== graphCode.text} onChange={(e: any) => setCode(e.target.value)} />
+        <Box dangerouslySetInnerHTML={{ __html: graphCode.data }} height="38px" onClick={getGraphCode} cursor={'pointer'}></Box>
+      </Flex>
+      <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"} disabled={code !== graphCode.text} onClick={login}>
         登录
       </Button>
       <Flex
@@ -268,25 +289,71 @@ const EmailPanel = ({
   }, [isSend, second]);
 
   const sendEmail = useCallback(async () => {
-    const res = await fetch(`${baseUrl}/api/sendmail`, {
-      method: 'POST',
-      body: JSON.stringify({
-        email
-      }),
-    })
-    const data: LoginResponse = await res.json()
-  }, [email])
+    if (email.includes('@')) {
+      const res = await fetch(`${baseUrl}/api/sendmail`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email
+        }),
+      })
+      const data = await res.json()
+      if (data.success) {
+        toast({
+          status: 'success',
+          title: '发送邮箱验证码,注意查收'
+        })
+      } else {
+        toast({
+          status: 'error',
+          title: '发送失败,请检查网络配置'
+        })
+      }
+    } else {
+      const res = await fetch(`${commonUrl}/acc/g-msg-code`, {
+        method: 'POST',
+        body: JSON.stringify({
+          phone: email,
+        }),
+        headers: { "Content-Type": "application/json;charset=utf-8" }
+      })
+      const data = await res.json()
+      if (data.success) {
+        toast({
+          status: 'success',
+          title: '发送短信验证码成功,注意查收'
+        })
+      } else {
+        toast({
+          status: 'error',
+          title: '发送失败,请检查网络配置'
+        })
+      }
+    }
+  }, [email, toast])
 
   const login = useCallback(async () => {
-    const res = await fetch(`${baseUrl}/api/login`, {
-      method: 'POST',
-      body: JSON.stringify({
-        email,
-        code,
-        t: 1
-      }),
-    })
-    const data: LoginResponse = await res.json()
+    let data: LoginResponse = null!
+    if (email.includes('@')) {
+      const res = await fetch(`${baseUrl}/api/login`, {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+          code,
+          t: 1
+        }),
+      })
+      data = await res.json()
+    } else {
+      const res = await fetch(`${baseUrl}/api/login`, {
+        method: 'POST',
+        body: JSON.stringify({
+          phone: email,
+          code,
+          t: 2
+        })
+      });
+      data = await res.json();
+    }
     if (data.success) {
       localStorage.setItem("token", data.token)
       toast({
@@ -305,19 +372,20 @@ const EmailPanel = ({
     if (data.needRegister) {
       setPanel("register")
     } else {
-      onClose()
       setLoginStatus({
-        status: data.success,
+        status: true,
         username: data.username,
-        userId: data.userId
+        userId: data.userId,
       })
+      
+      onClose()
     }
 
   }, [email, code, toast, setPanel, onClose, setLoginStatus])
   return (
     <>
       <Input
-        placeholder="邮箱"
+        placeholder="邮箱/手机号"
         mb={"16px"}
         onFocus={() => dispatch({ type: "invite" })}
         onBlur={() => dispatch({ type: "pending" })}

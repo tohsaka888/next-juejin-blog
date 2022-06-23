@@ -15,7 +15,25 @@ export default async function handler(
     const db = await connectDB();
     const collection = db.collection("AuthCode")
     const userCollection = db.collection("user")
-    if (body.t === 0 || !body.t) {
+    if (body.t === 2) {
+      const authcode = await collection.findOne({ phone: body.phone })
+      const user = await userCollection.findOne({ phone: body.phone })
+      if (authcode.code === body.code) {
+        let result = null
+        if (!user) {
+          result = await userCollection.insertOne({ phone: body.phone, token: '' })
+        }
+        const token = jwt.sign({ username: user.username ? user.username : body.phone, userId: result?.insertedId || user._id }, 'shhhhh');
+        await userCollection.updateOne({ phone: body.phone }, { $set: { token: token } })
+        res.send({ success: true, token: token, needRegister: !user.username, username: !user.username ? '' : user.username, userId: result?.insertedId });
+      } else {
+        res.send({ success: false, msg: '验证码错误', token: '', username: '', userId: '' });
+      }
+
+      setTimeout(() => {
+        collection.deleteOne({ email: body.email })
+      }, 5 * 60 * 1000)
+    } else if (body.t === 0 || !body.t) {
       const emailLogin = await userCollection.findOne({ email: body.username, password: body.password })
       const userLogin = await userCollection.findOne({ username: body.username, password: body.password })
 
@@ -30,7 +48,6 @@ export default async function handler(
           userCollection.updateOne({ _id: new ObjectId(userId) }, { $set: { token: token } })
         }
         if (userLogin) {
-
           username = userLogin.username
           userId = userLogin._id
           token = jwt.sign({ username: userLogin.username, userId: userId }, 'shhhhh');
@@ -50,9 +67,9 @@ export default async function handler(
         if (!user) {
           result = await userCollection.insertOne({ email: body.email, token: '' })
         }
-        const token = jwt.sign({ email: body.email, userId: result?.insertedId }, 'shhhhh');
+        const token = jwt.sign({ username: user.username ? user.username : body.email, userId: result?.insertedId || user._id }, 'shhhhh');
         await userCollection.updateOne({ email: body.email }, { $set: { token: token } })
-        res.send({ success: true, token: token, needRegister: !user, username: !user ? '' : user.username, userId: result?.insertedId });
+        res.send({ success: true, token: token, needRegister: !user.username, username: !user.username ? '' : user.username, userId: result?.insertedId });
       } else {
         res.send({ success: false, msg: '验证码错误', token: '', username: '', userId: '' });
       }

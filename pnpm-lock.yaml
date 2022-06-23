@@ -42,7 +42,7 @@ specifiers:
   remark-hint: 1.0.10
   remark-typescript: 0.4.1
   styled-components: 5.3.5
-  svg-captcha: ^1.4.0
+  svg-captcha: 1.4.0
   typescript: 4.7.4
 
 dependencies:

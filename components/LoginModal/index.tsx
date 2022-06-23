@@ -57,14 +57,15 @@ function LoginPanel({
   const [code, setCode] = useState<string>()
   const toast = useToast()
 
-  useEffect(() => {
-    const getGraphCode = async () => {
-      const res = await fetch(`${baseUrl}/api/graph-code`)
-      const data: CaptchaObj = await res.json()
-      setGraphCode(data)
-    }
-    getGraphCode()
+  const getGraphCode = useCallback(async () => {
+    const res = await fetch(`${baseUrl}/api/graph-code`)
+    const data: CaptchaObj = await res.json()
+    setGraphCode(data)
   }, [])
+
+  useEffect(() => {
+    getGraphCode()
+  }, [getGraphCode])
 
   const login = useCallback(async () => {
     const res = await fetch(`${baseUrl}/api/login`, {
@@ -122,7 +123,7 @@ function LoginPanel({
       {/* 图形验证码校验 */}
       <Flex align={"center"} mt={'16px'}>
         <Input placeContent={"请输入验证码"} isInvalid={code !== graphCode.text} onChange={(e: any) => setCode(e.target.value)} />
-        <Box dangerouslySetInnerHTML={{ __html: graphCode.data }} height="38px"></Box>
+        <Box dangerouslySetInnerHTML={{ __html: graphCode.data }} height="38px" onClick={getGraphCode} cursor={'pointer'}></Box>
       </Flex>
       <Button color="#fff" bg="#1890ff" mt={"16px"} w={"100%"} disabled={code !== graphCode.text} onClick={login}>
         登录

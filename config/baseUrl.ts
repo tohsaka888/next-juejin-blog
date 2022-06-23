@@ -1,4 +1,4 @@
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://www.react-animation.cloud/"
+    ? "https://next-juejin-blog.vercel.app"
     : "http://localhost:3000";

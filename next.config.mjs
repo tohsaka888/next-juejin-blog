@@ -17,9 +17,6 @@ const nextConfig = {
     styledComponents: true,
   },
   pageExtensions: ["js", "jsx", "ts", "tsx"],
-  experimental: {
-    runtime: "nodejs",
-  },
 };
 
 export default removeImport()(nextConfig);

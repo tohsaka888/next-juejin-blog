@@ -30,6 +30,10 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/2_react-animation.cloud.key ./
+COPY --from=builder /app/1_react-animation.cloud_bundle.crt ./
+COPY --from=builder /app/server.js ./
+COPY --from=builder /app/pnpm-lock.yaml ./
 
 USER nextjs
 
@@ -42,4 +46,4 @@ ENV PORT 3000
 # Uncomment the following line in case you want to disable telemetry.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD ["node_modules/.bin/next", "start"]
+CMD ["npm","run","start"]

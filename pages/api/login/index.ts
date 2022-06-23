@@ -24,7 +24,7 @@ export default async function handler(
         if (!user) {
           result = await userCollection.insertOne({ phone: body.phone, token: '' })
         }
-        const token = jwt.sign({ email: body.email, userId: result?.insertedId }, 'shhhhh');
+        const token = jwt.sign({ username: user ? user.username : body.phone, userId: result?.insertedId || user._id }, 'shhhhh');
         await userCollection.updateOne({ phone: body.phone }, { $set: { token: token } })
         res.send({ success: true, token: token, needRegister: !user, username: !user ? '' : user.username, userId: result?.insertedId });
       } else {
@@ -49,7 +49,6 @@ export default async function handler(
           userCollection.updateOne({ _id: new ObjectId(userId) }, { $set: { token: token } })
         }
         if (userLogin) {
-
           username = userLogin.username
           userId = userLogin._id
           token = jwt.sign({ username: userLogin.username, userId: userId }, 'shhhhh');
@@ -69,7 +68,7 @@ export default async function handler(
         if (!user) {
           result = await userCollection.insertOne({ email: body.email, token: '' })
         }
-        const token = jwt.sign({ email: body.email, userId: result?.insertedId }, 'shhhhh');
+        const token = jwt.sign({ username: user ? user.username : body.email, userId: result?.insertedId || user._id }, 'shhhhh');
         await userCollection.updateOne({ email: body.email }, { $set: { token: token } })
         res.send({ success: true, token: token, needRegister: !user, username: !user ? '' : user.username, userId: result?.insertedId });
       } else {

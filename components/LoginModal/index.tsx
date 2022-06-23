@@ -372,12 +372,13 @@ const EmailPanel = ({
     if (data.needRegister) {
       setPanel("register")
     } else {
-      onClose()
       setLoginStatus({
-        status: data.success,
+        status: true,
         username: data.username,
-        userId: data.userId
+        userId: data.userId,
       })
+      
+      onClose()
     }
 
   }, [email, code, toast, setPanel, onClose, setLoginStatus])

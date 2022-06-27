@@ -13,7 +13,7 @@
     "@emotion/styled": "11.9.3",
     "@uiw/react-markdown-preview": "4.0.18",
     "@uiw/react-md-editor": "3.14.4",
-    "framer-motion": "6.3.13",
+    "framer-motion": "6.3.16",
     "jsonwebtoken": "8.5.1",
     "moment": "2.29.3",
     "mongo-client-daemon": "1.0.2",

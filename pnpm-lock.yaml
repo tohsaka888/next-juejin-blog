@@ -22,7 +22,7 @@ specifiers:
   next: 12.2.1
   next-mdx-remote: 4.0.3
   next-remove-imports: 1.0.6
-  nodemailer: 6.7.6
+  nodemailer: 6.7.7
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: 4.4.0
@@ -59,7 +59,7 @@ dependencies:
   next: 12.2.1_biqbaboplfbrettd7655fr4n2y
   next-mdx-remote: 4.0.3_biqbaboplfbrettd7655fr4n2y
   next-remove-imports: 1.0.6
-  nodemailer: 6.7.6
+  nodemailer: 6.7.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
@@ -5423,8 +5423,8 @@ packages:
   /node-releases/2.0.5:
     resolution: {integrity: sha512-U9h1NLROZTq9uE1SNffn6WuPDg8icmi3ns4rEl/oTfIle4iLjTliCzgTsbaIFMq/Xn078/lfY/BL0GWZ+psK4Q==}
 
-  /nodemailer/6.7.6:
-    resolution: {integrity: sha512-/6KF/umU7r7X21Y648/yiRLrgkfz0dmpyuo4BfgYWIpnT/jCbkPTvegMfxCsDAu+O810p2L1BGXieMTPp3nJVA==}
+  /nodemailer/6.7.7:
+    resolution: {integrity: sha512-pOLC/s+2I1EXuSqO5Wa34i3kXZG3gugDssH+ZNCevHad65tc8vQlCQpOLaUjopvkRQKm2Cki2aME7fEOPRy3bA==}
     engines: {node: '>=6.0.0'}
     dev: false
 

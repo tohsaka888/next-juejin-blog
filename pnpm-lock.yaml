@@ -18,7 +18,7 @@ specifiers:
   jsonwebtoken: 8.5.1
   moment: 2.29.4
   mongo-client-daemon: 1.0.2
-  mongodb: 4.7.0
+  mongodb: 4.8.0
   next: 12.2.2
   next-mdx-remote: 4.0.3
   next-remove-imports: 1.0.6
@@ -55,7 +55,7 @@ dependencies:
   jsonwebtoken: 8.5.1
   moment: 2.29.4
   mongo-client-daemon: 1.0.2
-  mongodb: 4.7.0
+  mongodb: 4.8.0
   next: 12.2.2_biqbaboplfbrettd7655fr4n2y
   next-mdx-remote: 4.0.3_biqbaboplfbrettd7655fr4n2y
   next-remove-imports: 1.0.6
@@ -1759,7 +1759,7 @@ packages:
     resolution: {integrity: sha512-ELCPqAdroMdcuxqwMgUpifQyRoTpyYCNr1V9xKyF40VsBobsj+BbWNRvwGchMgBPGqkw655ypkjj2MEF5ywVwg==}
     deprecated: This is a stub types definition. bson provides its own type definitions, so you do not need this installed.
     dependencies:
-      bson: 4.6.4
+      bson: 4.6.5
     dev: false
 
   /@types/debug/4.1.7:
@@ -2337,8 +2337,8 @@ packages:
     engines: {node: '>=0.6.19'}
     dev: false
 
-  /bson/4.6.4:
-    resolution: {integrity: sha512-TdQ3FzguAu5HKPPlr0kYQCyrYUYh8tFM+CMTpxjNzVzxeiJY00Rtuj3LXLHSgiGvmaWlZ8PE+4KyM2thqE38pQ==}
+  /bson/4.6.5:
+    resolution: {integrity: sha512-uqrgcjyOaZsHfz7ea8zLRCLe1u+QGUSzMZmvXqO24CDW7DWoW1qiN9folSwa7hSneTSgM2ykDIzF5kcQQ8cwNw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       buffer: 5.7.1
@@ -5298,11 +5298,11 @@ packages:
       saslprep: 1.0.3
     dev: false
 
-  /mongodb/4.7.0:
-    resolution: {integrity: sha512-HhVar6hsUeMAVlIbwQwWtV36iyjKd9qdhY+s4wcU8K6TOj4Q331iiMy+FoPuxEntDIijTYWivwFJkLv8q/ZgvA==}
+  /mongodb/4.8.0:
+    resolution: {integrity: sha512-a0eVzm1e1kxwnzJV1wZXIS54KegM2y6wXTXOGTSAxr/E2YOUkl/zGBHNSI4z+6z+YQtVdzDqy1nJ4n5MxYJRnQ==}
     engines: {node: '>=12.9.0'}
     dependencies:
-      bson: 4.6.4
+      bson: 4.6.5
       denque: 2.0.1
       mongodb-connection-string-url: 2.5.2
       socks: 2.6.2

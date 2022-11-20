@@ -19,7 +19,7 @@
     "mongo-client-daemon": "1.0.2",
     "mongodb": "4.8.0",
     "next": "12.2.2",
-    "next-mdx-remote": "4.0.3",
+    "next-mdx-remote": "4.2.0",
     "next-remove-imports": "1.0.6",
     "nodemailer": "6.7.7",
     "react": "18.2.0",

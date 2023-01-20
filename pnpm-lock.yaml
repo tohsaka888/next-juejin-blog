@@ -31,7 +31,7 @@ specifiers:
   rehype-autolink-headings: 6.1.1
   rehype-code-titles: 1.1.0
   rehype-prism-plus: 1.4.2
-  rehype-slug: 5.0.1
+  rehype-slug: 5.1.0
   remark-codesandbox: 0.10.1
   remark-directive: 2.0.1
   remark-directive-rehype: 0.4.2
@@ -81,7 +81,7 @@ devDependencies:
   eslint-config-next: 12.2.2_tqvwk7sh3taph5wf7sr5z34mke
   rehype-autolink-headings: 6.1.1
   rehype-prism-plus: 1.4.2
-  rehype-slug: 5.0.1
+  rehype-slug: 5.1.0
   remark-codesandbox: 0.10.1
   remark-directive: 2.0.1
   remark-embed-images: 3.1.0
@@ -4510,10 +4510,10 @@ packages:
 
   /github-slugger/1.4.0:
     resolution: {integrity: sha512-w0dzqw/nt51xMVmlaV1+JRzN+oCa1KfcgGEWhxUG16wbdA+Xnt/yoFO8Z8x/V82ZcZ0wy6ln9QDup5avbhiDhQ==}
+    dev: false
 
   /github-slugger/2.0.0:
     resolution: {integrity: sha512-IaOQ9puYtjrkq7Y0Ygl9KDZnrf/aiUJYUpVf89y8kyaxbRG7Y1SrX/jaumrv81vc61+kiMempujsM3Yw7w5qcw==}
-    dev: false
 
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -7156,6 +7156,7 @@ packages:
       hast-util-to-string: 2.0.0
       unified: 10.1.2
       unist-util-visit: 4.1.0
+    dev: false
 
   /rehype-slug/5.1.0:
     resolution: {integrity: sha512-Gf91dJoXneiorNEnn+Phx97CO7oRMrpi+6r155tTxzGuLtm+QrI4cTwCa9e1rtePdL4i9tSO58PeSS6HWfgsiw==}
@@ -7167,7 +7168,6 @@ packages:
       hast-util-to-string: 2.0.0
       unified: 10.1.2
       unist-util-visit: 4.1.0
-    dev: false
 
   /rehype-stringify/9.0.3:
     resolution: {integrity: sha512-kWiZ1bgyWlgOxpqD5HnxShKAdXtb2IUljn3hQAhySeak6IOQPPt6DeGnsIh4ixm7yKJWzm8TXFuC/lPfcWHJqw==}

@@ -20,10 +20,8 @@ import { shadows } from "../../config/theme";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { ListContext, LoginStatusContext } from "context/Context";
-import Loading from "./Loading";
 import AnimatedMenu from "react-spring-menu";
 import { commonUrl } from "config/baseUrl";
-// const AnimatedMenu = dynamic(() => import("react-spring-menu"), { ssr: false, loading: () => <Loading /> });
 
 function Header({ onOpen }: { onOpen: () => void }) {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -70,9 +68,6 @@ function Header({ onOpen }: { onOpen: () => void }) {
       />
 
       <Search onOpen={onOpen} />
-      <Button>
-        <a href="https://covid19-analyse-system.vercel.app/">疫情服务平台</a>
-      </Button>
       <Flex>
         <IconButton
           bg={"transparent"}

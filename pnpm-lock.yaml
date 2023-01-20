@@ -20,7 +20,7 @@ specifiers:
   mongodb: 4.8.0
   next: 12.2.2
   next-mdx-remote: 4.2.0
-  next-remove-imports: 1.0.6
+  next-remove-imports: 1.0.8
   nodemailer: 6.7.7
   react: 18.2.0
   react-dom: 18.2.0
@@ -56,7 +56,7 @@ dependencies:
   mongodb: 4.8.0
   next: 12.2.2_biqbaboplfbrettd7655fr4n2y
   next-mdx-remote: 4.2.0_biqbaboplfbrettd7655fr4n2y
-  next-remove-imports: 1.0.6
+  next-remove-imports: 1.0.8
   nodemailer: 6.7.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -5352,8 +5352,8 @@ packages:
       - supports-color
     dev: false
 
-  /next-remove-imports/1.0.6:
-    resolution: {integrity: sha512-HXaFQXnGLVVrZACAn+d2kxBiPTKekmctl7U1Yuy0a81zFmEKlsWkK/K4E+/P/dv7m4CccPbtWwvofvaP2hX/sw==}
+  /next-remove-imports/1.0.8:
+    resolution: {integrity: sha512-nj0FDEmbHif9fTnET/K1gvBKJx1ulpTDcukK3QJus2qjzl5vIheo+0RvkUzwxy8OIdfzpI7mrSBG5Pt6+dLUFQ==}
     dependencies:
       '@babel/core': 7.18.2
       babel-loader: 8.2.5_@babel+core@7.18.2

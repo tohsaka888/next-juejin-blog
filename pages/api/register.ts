@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import connectDB from "lib/connectDb";
+import connectDB from "lib/connectDB";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { RegisterResponse } from "../../config/type";
 

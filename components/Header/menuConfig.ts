@@ -6,24 +6,24 @@ export const items: MenuItemProps[] = [
     key: "homepage",
   },
   {
-    label: "前端",
-    key: "frontend",
+    label: "计算机网络",
+    key: "network",
   },
   {
-    label: "后端",
-    key: "backend",
+    label: "JavaScript",
+    key: "javascript",
   },
   {
-    label: "Android",
-    key: "android",
+    label: "HTML&CSS",
+    key: "html&css",
   },
   {
-    label: "IOS",
-    key: "ios",
+    label: "Vue",
+    key: "vue",
   },
   {
-    label: "人工智能",
-    key: "ai",
+    label: "React",
+    key: "react",
   },
   {
     label: "算法",

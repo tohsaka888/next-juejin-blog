@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import jwt from 'jsonwebtoken'
 import { LoginResponse, MailResponse } from "config/type";
 import mailconfig from "lib/mailconfig";
-import connectDB from "lib/connectDb";
+import connectDB from "lib/connectDB";
 
 export default async function handler(
   req: NextApiRequest,

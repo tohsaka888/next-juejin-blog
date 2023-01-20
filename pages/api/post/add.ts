@@ -1,5 +1,5 @@
 import { AddResponse } from 'config/type';
-import connectDB from 'lib/connectDb';
+import connectDB from 'lib/connectDB';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler
@@ -53,7 +53,7 @@ export default async function handler
     });
     res.status(200).json({
       success: true,
-      id: result.insertedId
+      id: result.insertedId.toString()
     });
   } catch (error: any) {
     res.status(500).json({

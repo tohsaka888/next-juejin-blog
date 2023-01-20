@@ -28,7 +28,7 @@
     "react-spring": "9.6.1",
     "react-spring-menu": "0.0.5",
     "rehype-code-titles": "1.1.0",
-    "remark-directive-rehype": "0.4.0",
+    "remark-directive-rehype": "0.4.2",
     "remark-hint": "1.0.10",
     "styled-components": "5.3.5",
     "svg-captcha": "1.4.0"

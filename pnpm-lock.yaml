@@ -34,7 +34,7 @@ specifiers:
   rehype-slug: 5.0.1
   remark-codesandbox: 0.10.1
   remark-directive: 2.0.1
-  remark-directive-rehype: 0.4.0
+  remark-directive-rehype: 0.4.2
   remark-embed-images: 3.1.0
   remark-extended-table: 1.0.1
   remark-gfm: 3.0.1
@@ -65,7 +65,7 @@ dependencies:
   react-spring: 9.6.1_biqbaboplfbrettd7655fr4n2y
   react-spring-menu: 0.0.5_xrxvbtylmve4l2tr3vmmqgfp7q
   rehype-code-titles: 1.1.0
-  remark-directive-rehype: 0.4.0
+  remark-directive-rehype: 0.4.2
   remark-hint: 1.0.10
   styled-components: 5.3.5_biqbaboplfbrettd7655fr4n2y
   svg-captcha: 1.4.0
@@ -7202,12 +7202,12 @@ packages:
       - supports-color
     dev: true
 
-  /remark-directive-rehype/0.4.0:
-    resolution: {integrity: sha512-RrcjHXJ566myykjUIx3UNFxrAfHxFJeGK1jF8uqrxq5sBxO8YRBkg/W4640wqX5NCXny7khrqH23Dag8kYCl5A==}
+  /remark-directive-rehype/0.4.2:
+    resolution: {integrity: sha512-T6e+IG+BwqU4++MK54vFb+KDFjs3a+tHeK6E0T0ctR1FSyngolfDtAEzqxHWlRzQZqGi2sB4DFXry6oqH87D/g==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       hastscript: 7.0.2
-      unist-util-map: 3.1.1
+      unist-util-map: 3.1.2
     dev: false
 
   /remark-directive/2.0.1:
@@ -8013,8 +8013,8 @@ packages:
   /unist-util-is/5.1.1:
     resolution: {integrity: sha512-F5CZ68eYzuSvJjGhCLPL3cYx45IxkqXSetCcRgUXtbcm50X2L9oOWQlfUfDdAf+6Pd27YDblBfdtmsThXmwpbQ==}
 
-  /unist-util-map/3.1.1:
-    resolution: {integrity: sha512-n36sjBn4ibPtAzrFweyT4FOcCI/UdzboaEcsZvwoAyD/gVw5B3OLlMBySePMO6r+uzjxQEyRll2akfVaT4SHhw==}
+  /unist-util-map/3.1.2:
+    resolution: {integrity: sha512-WLA2R6x/UaopedG2poaWLShf5LCi+BNa6mMkACdjft23PHou4v85PvZItjbO2XgXvukMP365PlL/DrbuMgr3eg==}
     dependencies:
       '@types/unist': 2.0.6
     dev: false

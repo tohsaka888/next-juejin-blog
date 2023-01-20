@@ -16,7 +16,6 @@
     "framer-motion": "6.4.3",
     "jsonwebtoken": "8.5.1",
     "moment": "2.29.4",
-    "mongo-client-daemon": "1.0.2",
     "mongodb": "4.8.0",
     "next": "12.2.2",
     "next-mdx-remote": "4.0.3",

@@ -43,7 +43,7 @@
     "eslint": "8.28.0",
     "eslint-config-next": "12.2.2",
     "rehype-autolink-headings": "6.1.1",
-    "rehype-prism-plus": "1.4.2",
+    "rehype-prism-plus": "1.6.3",
     "rehype-slug": "5.1.0",
     "remark-codesandbox": "0.10.1",
     "remark-directive": "2.0.1",

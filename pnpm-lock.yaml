@@ -24,7 +24,7 @@ specifiers:
   nodemailer: 6.7.7
   react: 18.2.0
   react-dom: 18.2.0
-  react-icons: 4.4.0
+  react-icons: 4.12.0
   react-infinite-scroll-component: 6.1.0
   react-spring: 9.6.1
   react-spring-menu: 0.0.5
@@ -60,7 +60,7 @@ dependencies:
   nodemailer: 6.7.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-icons: 4.4.0_react@18.2.0
+  react-icons: 4.12.0_react@18.2.0
   react-infinite-scroll-component: 6.1.0_react@18.2.0
   react-spring: 9.6.1_biqbaboplfbrettd7655fr4n2y
   react-spring-menu: 0.0.5_o4scbtliisanygemawej7x2d6i
@@ -7079,8 +7079,8 @@ packages:
       use-sidecar: 1.1.2_3stiutgnnbnfnf3uowm5cip22i
     dev: false
 
-  /react-icons/4.4.0_react@18.2.0:
-    resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
+  /react-icons/4.12.0_react@18.2.0:
+    resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
     peerDependencies:
       react: '*'
     dependencies:

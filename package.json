@@ -23,7 +23,7 @@
     "nodemailer": "6.7.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "4.4.0",
+    "react-icons": "4.12.0",
     "react-infinite-scroll-component": "6.1.0",
     "react-spring": "9.6.1",
     "react-spring-menu": "0.0.5",

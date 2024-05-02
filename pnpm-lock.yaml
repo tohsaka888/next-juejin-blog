@@ -6,7 +6,7 @@ specifiers:
   '@emotion/styled': 11.10.5
   '@jsdevtools/rehype-toc': 3.0.2
   '@types/node': 18.11.18
-  '@types/nodemailer': 6.4.4
+  '@types/nodemailer': 6.4.15
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   '@types/styled-components': 5.1.25
@@ -73,7 +73,7 @@ dependencies:
 devDependencies:
   '@jsdevtools/rehype-toc': 3.0.2
   '@types/node': 18.11.18
-  '@types/nodemailer': 6.4.4
+  '@types/nodemailer': 6.4.15
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
   '@types/styled-components': 5.1.25
@@ -2955,8 +2955,8 @@ packages:
   /@types/node/18.11.18:
     resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
 
-  /@types/nodemailer/6.4.4:
-    resolution: {integrity: sha512-Ksw4t7iliXeYGvIQcSIgWQ5BLuC/mljIEbjf615svhZL10PE9t+ei8O9gDaD3FPCasUJn9KTLwz2JFJyiiyuqw==}
+  /@types/nodemailer/6.4.15:
+    resolution: {integrity: sha512-0EBJxawVNjPkng1zm2vopRctuWVCxk34JcIlRuXSf54habUWdz1FB7wHDqOqvDa8Mtpt0Q3LTXQkAs2LNyK5jQ==}
     dependencies:
       '@types/node': 18.11.18
     dev: true

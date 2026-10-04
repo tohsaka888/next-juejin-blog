@@ -15,7 +15,7 @@
     "@uiw/react-md-editor": "3.20.2",
     "framer-motion": "7.6.7",
     "jsonwebtoken": "9.0.0",
-    "moment": "2.29.4",
+    "moment": "2.31.0",
     "mongodb": "4.13.0",
     "next": "12.2.2",
     "next-mdx-remote": "4.2.0",
